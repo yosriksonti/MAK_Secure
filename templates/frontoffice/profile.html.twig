@@ -1,0 +1,134 @@
+{% extends 'frontoffice/index.html.twig' %}
+{% block content %}
+      <!-- End Subheader --><!-- Start Blog -->
+      <div class="subheader normal-bg section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <h1 class="text-custom-white">Profile</h1>
+                  <ul class="custom-flex justify-content-center">
+                     <li class="fw-500"><a href="/" class="text-custom-white">Acceuil</a></li>
+                     <li class="active fw-500">Profile</li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Subheader --><!-- Start Listing detail -->
+      <section class="section-padding bg-light-white listing-details">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="listing-details-inner  bg-custom-white padding-20">
+                     <div class="row">
+                        <div class="col-lg-8">
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="blog-details bg-custom-white">
+                                 {% if paymentSuccess %}
+                                    <h5 class="fw-600"><a href="#" class="text-custom-black">Paiement Approuvé</a></h5>
+                                 {% elseif paymentFail %}
+                                    <h5 class="fw-600"><a href="#" class="text-custom-black">Paiement Echoué</a></h5>
+                                 {% endif %}
+                                 {% if GET['err'] is defined %}
+                                    <h5 class="fw-600"><a href="#" class="text-custom-black">{{ GET['err'] }}</a></h5>
+                                 {% endif %}
+                                    <hr>
+                                    <!-- tags & social -->
+                                    
+                                    <!-- tags & social --><!-- post author -->
+                                    <div class="post-author bg-light-white padding-15 mb-xl-20">
+                                       <div class="author-caption col-6" >
+                                          <h5 class="fw-600"><a href="#" class="text-custom-black">{{ app.user.Name }} {{ app.user.Lastname  }}</a></h5>
+                                          <hr>
+                                          <p class="fw-600"><b href="#" class="text-custom-black">Date de Naissance : </b>{{ app.user.Date_Naissance }}</p>
+                                          <p class="fw-600"><b href="#" class="text-custom-black">Pays : </b>{{ app.user.Pays }}</p>
+                                          <p class="fw-600"><b href="#" class="text-custom-black">Telephone : </b>{{ app.user.Telephone }}</p>
+                                          <hr>
+                                          <p class="fw-600"><b href="#" class="text-custom-black">Addresse 1 : </b>{{ app.user.Add1 }}</p>
+                                          {% if app.user.Add2 %}
+                                          <p class="fw-600"><b href="#" class="text-custom-black">Addresse 2 : </b>{{ app.user.Add2 }}</p>
+                                          <hr>
+                                          {% endif %}
+                                          <p class="fw-600"><b href="#" class="text-custom-black">Permis : </b>{{ app.user.Permis }} <small>livré le</small> {{ app.user.Date_Permis }}</p>
+                                          <p class="fw-600"><b href="#" class="text-custom-black">CIN/Passeport : </b>{{ app.user.CIN }} <small>livré le</small> {{ app.user.Date_CIN }}</p>
+                                          <hr>
+                                          <a class="col-6" href="{{ path('front_office_profile_edit') }}"><button type="submit" class="btn-first btn-submit full-width btn-height">Modifier</button></a>
+                                       </div>
+                                    </div>
+                                    <div class="comment-respond" id="respond">
+                                       <h4 class="text-custom-black fw-600">Laissez un Feedback</h4>
+                                       {{ form_start(form) }}
+                                          <div hidden="true">
+                                             {{ form_widget(form.Vehicule, {'attr':{'class':'hidden-row'}, "value" : null})  }}  
+                                             {{ form_row(form.Client, {'attr':{'class':'hidden', "value" : app.user.Email} }) }}  
+                                             {{ form_widget(form.Visible, {'attr':{'class':'hidden-row'}, "value" : "0"}) }}  
+                                             {{ form_widget(form.createdOn, {'attr':{'class':'hidden-row'}, "value" : today}) }}    
+                                                                                    
+                                          </div>
+                                          <div class="row">
+                                             <div class="col-8">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Feedback</label>
+                                                   {{ form_widget(form.Body, {'attr':{'class':'form-control form-control-custom', 'rows':'4', 'placeholder':"Comment"}}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-4">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Rating</label>
+                                                   {{ form_widget(form.Rating, {'attr':{'class':'form-control form-control-custom', 'max':'5','min':'0', 'placeholder':"5"}}) }}                                                 
+                                                </div>
+                                                <button type="submit" class="btn-first btn-submit full-width btn-height">Laissez un Feedback</button>
+                                             </div>
+                                          </div>
+                                    {{ form_end(form) }}
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="quick-quote bx-wrapper padding-20 mb-xl-30">
+                                    <h5 class="text-custom-black">Reservations</h5>
+                                    {% for reservation in app.user.locations %}
+                                          <hr>
+                                          <small style="float : right">{{reservation.Status}}</small>
+                                          <p class="fw-600"><a href="{{path('front_office_reservation',{'Num' : reservation.Num}) }}" class="text-custom-black"><b>{{ reservation.Vehicule.Marque }} : {{ reservation.Vehicule.Modele }}</b> du {{reservation.Date_Loc }} jusqu'à {{reservation.Date_Retour }}<a></p>
+                                          <span>Du <b>{{reservation.Date_Loc }}</b> jusqu'à <b>{{reservation.Date_Retour }}</b></span>
+                                    {% endfor %}
+                                    
+                                 </div>
+                                 <div class="quick-quote bx-wrapper padding-20 mb-xl-30">
+                                    <h5 class="text-custom-black">Paiements</h5>
+                                    {% for payment in app.user.payments %}
+                                          {% if payment.status != "pending"%}
+                                          <hr>
+                                          <p class="fw-600"><a href="{{path('front_office_reservation',{'Num' : payment.Location.Num}) }}" class="text-custom-black"><b>Num Reservation</b> : {{ payment.Location.Num }}</a></p>
+                                          <p class="fw-600"><a href="{{path('front_office_car',{'id' : payment.Location.Vehicule.id}) }}" class="text-custom-black"><b>Vehicule</b> : {{ payment.Location.Vehicule.Marque }} {{ payment.Location.Vehicule.Modele }}</a></p>
+                                          <p class="fw-600"><b>ID</b> : {{ payment.sessionId }}</p>
+                                          <p class="fw-600"><b>Montant</b> : {{ payment.total }} DT <small style="float : right">{{ payment.created_On }}</br>{{ payment.status }}</small></p>
+                                          {% endif %}
+                                    {% endfor %}
+                                    
+                                 </div>
+                                 <div class="need-help bx-wrapper padding-20">
+                                    <h5 class="text-custom-black">Besoin d'aide ?</h5>
+                                    <p class="text-light-dark">Nous serions plus qu'heureux de vous aider. Notre équipe de conseillers est à votre service 24h/24 et 7j/7 pour vous aider.</p>
+                                    <ul class="custom">
+                                       <li class="text-custom-blue fs-18"> <i class="fas fa-phone-alt"></i> <a href="#" class="text-light-dark">(+216) {{ setting.Tel }}</a> </li>
+                                       <li class="text-custom-blue fs-18"> <i class="fas fa-envelope"></i> <a href="#" class="text-light-dark fs-14">{{ setting.Email }}</a> </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Listing detail -->
+      {% endblock %}

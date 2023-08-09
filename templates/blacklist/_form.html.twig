@@ -1,0 +1,32 @@
+<div class="row gx-4">
+    <div class="col-lg-8">
+    {{ form_start(form) }}
+        <div class="card mb-4">
+            <div class="card-header">
+                Fiche Blacklist                                                            
+            </div>
+            <div class="card-body">
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-6">
+                        {{ form_label(form.CIN, ' CIN', {'label_attr':{'class':'small mb-1' }}) }}                                                          
+                        {{ form_widget(form.CIN, {'attr':{'class':'form-control' }}) }}                                                 
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.CIN) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.Permis, ' Permis', {'label_attr':{'class':'small mb-1' }}) }}                                                          
+                        {{ form_widget(form.Permis, {'attr':{'class':'form-control' }}) }}                                                 
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Permis) }}
+                    </div>
+                </div>
+                <button class="fw-500 btn btn-primary">
+                        {{ button_label|default('Sauvegarder') }}
+                </button>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

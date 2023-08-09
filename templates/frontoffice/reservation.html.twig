@@ -1,0 +1,187 @@
+{% extends 'frontoffice/index.html.twig' %}
+{% block content %}
+      <!-- End Subheader --><!-- Start Blog -->
+      <div class="subheader normal-bg section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <h1 class="text-custom-white">Reservation</h1>
+                  <ul class="custom-flex justify-content-center">
+                     <li class="fw-500"><a href="index.html" class="text-custom-white">Acceuil</a></li>
+                     <li class="active fw-500">Reservation </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Subheader --><!-- Start Blog -->
+      <section class="section-padding bg-light-white booking-form">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="tabs">
+                     <div class="tab-content bg-custom-white bx-wrapper padding-20">
+                        <div class="tab-pane fade active show">
+                           <div class="tab-inner">
+                              <div class="row">
+                                 <div class="col-lg-8">
+                                    <h5 class="text-custom-black">Reservation<small style="float : right">{{ reservation.Etat }}</small></h5>
+                                    <div class="row mb-md-80">
+                                       <div class="col-md-6">
+                                          <div class="form-group"><label class="fs-14 text-custom-black fw-500">Agence Depart</label>
+                                             <input type="text" class="form-control form-control-custom" placeholder="XXXX-XXXX-XXXX" disabled value="{{ reservation.AgenceDepart.Nom }}">
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-group"><label class="fs-14 text-custom-black fw-500">Agence Retour</label>
+                                             <input type="text" class="form-control form-control-custom" placeholder="XXXX-XXXX-XXXX" disabled value="{{ reservation.AgenceArrive.Nom }}">
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-group"><label class="fs-14 text-custom-black fw-500">Date Depart</label>
+                                             <input type="text" class="form-control form-control-custom" placeholder="XXXX-XXXX-XXXX" disabled value="{{ reservation.Date_Loc }}">
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-group"><label class="fs-14 text-custom-black fw-500">Date Retour</label>
+                                             <input type="text" class="form-control form-control-custom" placeholder="XXXX-XXXX-XXXX" disabled value="{{ reservation.Date_Retour }}">
+                                          </div>
+                                       </div>
+                                       <div class="col-12">
+                                          <hr>
+                                       </div>
+                                       <div class="col-md-12">
+                                          <div class="form-group">
+                                             <label class="fs-14 text-custom-black fw-500">Pays de Résidence</label>
+                                             <div class="group-form">
+                                             <input type="text" class="form-control form-control-custom" placeholder="XXXX-XXXX-XXXX" disabled value="{{ reservation.IP }}">
+                                             </div>
+                                          </div>
+                                       </div>
+                                       {% if reservation.Status == "Non Confirmée"%}
+                                        <div class="col-md-12">
+                                          <div class="form-group">
+                                             <div class="group-form">
+                                             <a href="{{ path('pay_index') }}?Num={{ reservation.Num }}&amount={{ amount }}"><button type="button" class="form-control form-control-custom btn-first btn-submit">Confirmer</button></a>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       {% endif %}
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                    <div class="row">
+                                       <div class="col-12">
+                                          <div class="car-grid mb-xl-30">
+                                             <div class="car-grid-wrapper bx-wrapper">
+                                                <div class="image-sec animate-img"> <a href="{{ path('front_office_car', {'id': reservation.vehicule.id}) }}"><img src="{{ vich_uploader_asset(reservation.vehicule, 'Def') }}" class="full-width" alt="img"></a> </div>
+                                                <div class="car-grid-caption padding-20 bg-custom-white p-relative">
+                                                   <h4 class="title fs-16"><a href="{{ path('front_office_car', {'id': reservation.vehicule.id}) }}" class="text-custom-black">{{ reservation.vehicule.Marque}} : {{ reservation.vehicule.Modele }}<small class="text-light-dark">Total</small></a></h4>
+                                                   <span class="price"><small></small>{{ reservation.vehicule.Prix * Days }} DT {{reservation.vehicule.isVAT ? "TTC" : "" }} <small><b>( +{{reservation.vehicule.Caut}} DT Cautionnement )</b></small> </span></br>
+                                                   <div class="need-help bx-wrapper padding-20">
+                                                      <div class="col-12">
+                                                         <h6 class="text-custom-black">Options Supplémentaires</h6>
+                                                      </div>
+                                                      <hr>
+                                                      {% if reservation.isBabySeat  %}
+                                                      <div class="col-md-12">
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Siège Bébé : {{ reservation.isBabySeat ? BS * Days : "Non" }} {{ reservation.isBabySeat ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      {% if reservation.isSTW  %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Assurance Passager : {{ reservation.isSTW ? STW : "Non" }} {{ reservation.isSTW ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      {% if reservation.isPersonalDriver %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Chauffeur Personel : {{ reservation.isPersonalDriver ? PD * Days : "Non" }} {{ reservation.isPersonalDriver ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      {% if reservation.isSecondDriver %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Deuxiéme Conducteur : {{ reservation.isSecondDriver ? SD  : "Non" }} {{ reservation.isSecondDriver ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      {% if reservation.isReservoire %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Réservoire Plein : {{ reservation.isReservoire ? RS : "Non" }} {{ reservation.isReservoire ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Frais de Livraison : {{ frais }} DT</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="col-12">
+                                                         <h5 class="text-custom-black">Total : <small><b>{{ reservation.Montant  }} DT {{reservation.vehicule.isVAT ? "TTC" : "" }}</b></small></h5>
+                                                      </div>
+                                                      <hr>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="quick-quote bx-wrapper padding-20 mb-xl-30">
+                                             <h5 class="text-custom-black">Paiements</h5>
+                                             {% for payment in reservation.Payments %}
+                                                   {% if payment.status != "pending"%}
+                                                   <hr>
+                                                   <p class="fw-600"><a href="{{path('front_office_reservation',{'Num' : payment.Location.Num}) }}" class="text-custom-black"><b>Num Reservation</b> : {{ payment.Location.Num }}</a></p>
+                                                   <p class="fw-600"><a href="{{path('front_office_car',{'id' : payment.Location.Vehicule.id}) }}" class="text-custom-black"><b>Vehicule</b> : {{ payment.Location.Vehicule.Marque }} {{ payment.Location.Vehicule.Modele }}</a></p>
+                                                   <p class="fw-600"><b>ID</b> : {{ payment.sessionId }}</p>
+                                                   <p class="fw-600"><b>Montant</b> : {{ payment.total }} DT <small style="float : right">{{ payment.created_On }}</br>{{ payment.status }}</small></p>
+                                                   {% endif %}
+                                             {% endfor %}
+                                             
+                                          </div>
+                                          <div class="need-help bx-wrapper padding-20">
+                                             <h5 class="text-custom-black">Besoin d'aide ?</h5>
+                                             <p class="text-light-dark">Nous serions plus qu'heureux de vous aider. Notre équipe de conseillers est à votre service 24h/24 et 7j/7 pour vous aider.</p>
+                                             <ul class="custom">
+                                                <li class="text-custom-blue fs-18"> <i class="fas fa-phone-alt"></i> <a href="#" class="text-light-dark">(+216) {{ setting.Tel }}</a> </li>
+                                                <li class="text-custom-blue fs-18"> <i class="fas fa-envelope"></i> <a href="#" class="text-light-dark fs-14">{{ setting.Email }}</a> </li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Blog -->
+      <!-- End Listing detail -->
+      {% endblock %}

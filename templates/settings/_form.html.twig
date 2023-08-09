@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-xl-4">
+        {{ form_start(form) }}
+        <div class="card mb-4">
+            <div class="card-header">
+                Photo Couverture          
+            </div>
+            <div class="card-body text-center">
+                <div class="small font-italic text-muted mb-4">
+                    JPG or PNG no larger than 5 MB                         
+                    {% if setting is defined %}
+                        <img src="{{ vich_uploader_asset(setting, 'Couverture') }}" alt="Photo Couverture" class="img-thumbnail" width="200px" height="50%" />
+                    {% else %}
+                        <img class="img-account-profile mb-2" src="{{asset('back-office/assets/img/demo/user-placeholder.svg') }}" alt="" width="50%" />
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-body text-center">
+                {{ form_widget(form.Couverture, {'attr':{'title':'' }}) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                Fiche Paramétres                                            
+            </div>
+            <div class="card-body">
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-12">
+                        {{ form_label(form.Propos, 'A Propos', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.Propos, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form) }}
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-4">
+                        {{ form_label(form.Tel, 'Num Telephone', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.Tel, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Tel) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_label(form.Address, 'Addresse', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.Address, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Address) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_label(form.Email, 'E-mail', {'label_attr':{'class':'small mb-1' }}) }}                                  
+                        {{ form_widget(form.Email, {'attr':{'class':'form-control' }}) }}                              
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Email) }}
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-12">
+                        {{ form_label(form.Ad, 'Annonce', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.Ad, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Ad) }}
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-12">
+                        {{ form_label(form.Banner, 'Visible ?', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.Banner, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Banner) }}
+                    </div>
+                </div>
+                <button class="fw-500 btn btn-primary">
+                        {{ button_label|default('Sauvegarder') }}
+                </button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

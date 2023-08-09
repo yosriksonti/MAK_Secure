@@ -1,0 +1,86 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                 Liste des Parcs                                                                                                                 
+                            </h1>
+                        </div>
+                        <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('park_new') }}">
+                                <i class="me-1" data-feather="user-plus"></i>
+                                Ajouter Parc                            
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-fluid px-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th width="45%">
+                                    Nom
+                                </th>
+                                <th width="15%">
+                                    Debut HS
+                                </th>
+                                <th width="15%">
+                                    Debut BS
+                                </th>
+                                <th width="10%">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for  park in  parks %}
+                                <tr>
+                                    <td width="45%">
+                                        {{  park.Nom }}
+                                    </td>
+
+                                    <td width="15%">
+                                        {{  park.Debut_HS }}
+                                    </td>
+
+                                    <td width="15%">
+                                        {{  park.Debut_BS }}
+                                    </td>
+                                    <td width="15%">
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('park_show', {'id':  park.id}) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('park_edit', {'id':  park.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                            {{ include('park/_delete_form.html.twig') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="17">
+                                        no records found
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

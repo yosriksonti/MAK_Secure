@@ -1,0 +1,90 @@
+{% extends 'frontoffice/index.html.twig' %}
+{% block content %}
+      <!-- End Subheader --><!-- Start Blog -->
+      <div class="subheader normal-bg section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <h1 class="text-custom-white">Vehicules</h1>
+                  <ul class="custom-flex justify-content-center">
+                     <li class="fw-500"><a href="{{ path('home_index') }}" class="text-custom-white">Acceuil</a></li>
+                     <li class="active fw-500">Vehicules </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Subheader --><!-- Start Blog -->
+      <section class="section-padding bg-light-white">
+         <div class="container">
+            <div class="row">
+               <h6 class="d-none">1</h6>
+               <aside class="col-lg-4">
+                  <div class="sidebar_wrap mb-md-80">
+                     <div class="sidebar">
+                        <div class="sidebar_widgets mb-xl-30">
+                           <div class="widget_title">
+                              <h5 class="no-margin text-custom-white">Modifier Recherche</h5>
+                           </div>
+                           <form>
+                              <h6>Transmission</h6>
+                              <div class="checkbox-group">
+                                 <div class="form-group"><label class="custom-checkbox"><input type="checkbox" name="Bt[]" value="Automatique" {% if Bt['Automatique'] is defined %}checked{% endif %}><span class="checkmark"></span>Automatique<img src={{ asset('icons/automatic-transmission.png') }} style="float:right; width : 2em"></label></div>
+                                 <div class="form-group"><label class="custom-checkbox"><input type="checkbox" name="Bt[]" value="Manuelle" {% if Bt['Manuelle'] is defined %}checked{% endif %}><span class="checkmark"></span>Manuelle<img src={{ asset('icons/manual-transmission.png') }} style="float:right; width : 2em"></label></div>
+                              </div>
+                              <hr>
+                              <h6>Marque</h6>
+                              <div class="checkbox-group">
+                              {% for marque in marques %}
+                                 <div class="form-group"><label class="custom-checkbox"><input type="checkbox" name="Mq[]" value="{{marque.Marque}}" {% if Mq[marque.Marque] is defined %}checked{% endif %}><span class="checkmark"></span>{{marque.Marque}}</label></div>
+                              {% endfor %}
+                              </div>
+                              <hr>
+                              <button type="submit" class="btn-first btn-submit full-width btn-height">Rechercher</button>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </aside>
+               <div class="col-lg-8">
+                  <div class="row">
+                     <div class="col-12">
+                        <div class="listing-top-heading mb-xl-20">
+                           <h6 class="no-margin text-custom-black">Affichage {{ autos|length }} Resultats</h6>
+                        </div>
+                     </div>
+                     {% for auto in autos %}
+                     <div class="col-md-12">
+                        <div class="car-grid mb-xl-30">
+                           <div class="car-grid-wrapper car-grid bx-wrapper">
+                              <div class="image-sec animate-img"><a href="{{ path('front_office_auto', {'id': auto.id}) }}"><img src="{{ vich_uploader_asset(auto.picture, 'imageFile') }}" class="full-width" alt="img"></a></div>
+                              <div class="car-grid-caption padding-20 bg-custom-white p-relative">
+                                 <h4 class="title fs-16"><a href="{{ path('front_office_auto', {'id': auto.id}) }}" class="text-custom-black">{{ auto.Marque }} : {{ auto.Modele }}</a></h4>
+                                 <p><i class='fa fa-gear'></i> {{ auto.Boite }} |<i class='fa fa-snowflake'></i> {{ auto.Clim ? 'Oui' : 'Non' }} | <i class='fa fa-user'></i> {{ auto.NbPlaces }} | <i class='fa fa-briefcase'></i> {{ auto.NbVal }}</p>
+                                 <div class="row">
+                                    <div class="col-12">
+                                       <div class="car-grid-caption padding-20 bg-custom-white p-relative">
+                                          <span class="price" style="text-align : center"><p><sup style="font-size : 20px">{{ auto.Prix|number_format(3,".",",") }} DT {{auto.isVAT ? "TTC" : "" }}</sup></p></span>
+                                          <hr>
+                                          <p>{{auto.Description}}</p>
+                                       </div>
+                                    </div> 
+                                 </div>
+                                 <hr>
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                       <div class="action"><a class="full-width" href="{{ path('front_office_auto', {'id': auto.id }) }}"><button class="btn-first btn-submit full-width btn-height" style="margin: 2px">Voir</button></a></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     {% endfor %}
+
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Blog -->
+      {% endblock %}

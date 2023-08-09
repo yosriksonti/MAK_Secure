@@ -1,0 +1,261 @@
+{% extends 'frontoffice/index.html.twig' %}
+{% block content %}
+      <!-- End Subheader --><!-- Start Blog -->
+      <div class="subheader normal-bg section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <h1 class="text-custom-white">Booking</h1>
+                  <ul class="custom-flex justify-content-center">
+                     <li class="fw-500"><a href="index.html" class="text-custom-white">Acceuil</a></li>
+                     <li class="active fw-500">Booking </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Subheader --><!-- Start Blog -->
+      <section class="section-padding bg-light-white booking-form">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="tabs">
+                     <div class="tab-content bg-custom-white bx-wrapper padding-20">
+                        <div class="tab-pane fade active show">
+                           <div class="tab-inner">
+                              <div class="row">
+                                 <div class="col-lg-8">
+                                    <h5 class="text-custom-black">Validation</h5>
+                                    {{ form_start(form) }}
+                                    <div hidden="true">
+                                       {{ form_widget(form.Num, {'attr':{'class':'hidden-row' , 'value' : random() }}) }}
+                                       {{ form_widget(form.Client, {'attr':{'class':'hidden-row', "value" : app.user.Email}}) }}  
+                                       {{ form_widget(form.Date_Res, {'attr':{'class':'hidden-row'}, "value" : today}) }}                                                                                        
+                                       {{ form_widget(form.Montant, {'attr':{'class':'hidden-row'}, "value" : prix}) }}                                                                                            
+                                       {{ form_widget(form.Avance, {'attr':{'class':'hidden-row'}, "value" : "0"}) }}                                                                                            
+                                       {{ form_widget(form.Type, {'attr':{'class':'hidden-row'}, "value" : "Location"}) }}                                                                                            
+                                       {{ form_widget(form.Etat, {'attr':{'class':'hidden-row'}, "value" : "En Attente"}) }}                                                                                            
+                                       {{ form_widget(form.Status, {'attr':{'class':'hidden-row'}, "value" : "Non Confirmée"}) }}
+                                       {{ form_widget(form.Vehicule, {'attr':{'class':'hidden-row'}, "value" : vehicule.id}) }}
+                                       {{ form_widget(form.Agence_Depart, {'attr':{'class':'hidden-row'}, "value" : GET['AP']}) }}
+                                       {{ form_widget(form.Agence_Arrive, {'attr':{'class':'hidden-row'}, "value" : GET['AD']}) }}
+                                       {{ form_widget(form.Date_Loc, {'attr':{'class':'hidden-row'}, "value" : DP}) }}
+                                       {{ form_widget(form.Date_Retour, {'attr':{'class':'hidden-row'}, "value" : DD}) }}                                                                        
+                                       {{ form_widget(form.isBabySeat, {'attr':{'class':'hidden-row'}, "value" : GET['BS']}) }}                                                                        
+                                       {{ form_widget(form.isSTW, {'attr':{'class':'hidden-row'}, "value" : GET['STW']}) }}                                                                        
+                                       {{ form_widget(form.isPersonalDriver, {'attr':{'class':'hidden-row'}, "value" : GET['PD']}) }}                                                                        
+                                       {{ form_widget(form.isSecondDriver, {'attr':{'class':'hidden-row'}, "value" : GET['SD']}) }}                                                                        
+                                       {{ form_widget(form.isReservoire, {'attr':{'class':'hidden-row'}, "value" : GET['RS']}) }}                                                                        
+                                    </div>
+                                    <div class="row mb-md-80">
+                                       <div class="col-md-6">
+                                          <div class="form-group"><label class="fs-14 text-custom-black fw-500">Agence Depart</label>
+                                             <input type="text" class="form-control form-control-custom" placeholder="XXXX-XXXX-XXXX" disabled value="{{ agence_d }}">
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-group"><label class="fs-14 text-custom-black fw-500">Agence Retour</label>
+                                             <input type="text" class="form-control form-control-custom" placeholder="XXXX-XXXX-XXXX" disabled value="{{ agence_r }}">
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-group"><label class="fs-14 text-custom-black fw-500">Date Depart</label>
+                                             <input type="date" class="form-control form-control-custom"  disabled value="{{ DP }}">
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-group"><label class="fs-14 text-custom-black fw-500">Date Retour</label>
+                                             <input type="date" class="form-control form-control-custom"  disabled value="{{ DD }}">
+                                          </div>
+                                       </div>
+                                       
+                                       {% if GET['SD'] == 1 %}
+                                       <div class="col-12">
+                                          <hr>
+                                       </div>
+                                       <div class="col-12">
+                                          <h5 class="text-custom-black">Deuxiéme Conducteur</h5>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-group">
+                                             <label class="fs-14 text-custom-black fw-500">Carte d'Identité Nationale</label>
+                                             {{ form_widget(form.SecondDriverCIN, {'attr':{'class':'form-control form-control-custom','required':true }}) }}                                                 
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-group">
+                                             <label class="fs-14 text-custom-black fw-500">Date de Livraison</label>
+                                             {{ form_widget(form.SecondDriverDateCIN, {'attr':{'class':'form-control form-control-custom','required':true }}) }}                                                 
+                                          </div>
+                                       </div>
+
+                                       <div class="col-md-6">
+                                          <div class="form-group">
+                                             <label class="fs-14 text-custom-black fw-500">Permis</label>
+                                             {{ form_widget(form.SecondDriverPermis, {'attr':{'class':'form-control form-control-custom','required':true }}) }}                                                 
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-group">
+                                             <label class="fs-14 text-custom-black fw-500">Date de Livraison</label>
+                                             {{ form_widget(form.SecondDriverDatePermis, {'attr':{'class':'form-control form-control-custom','required':true }}) }}                                                 
+                                          </div>
+                                       </div>
+
+                                       <div class="col-md-12">
+                                          <div class="form-group">
+                                             <label class="fs-14 text-custom-black fw-500">Date de Naissance</label>
+                                             {{ form_widget(form.SecondDriverDN, {'attr':{'class':'form-control form-control-custom','required':true }}) }}                                                 
+                                          </div>
+                                       </div>
+                                       {% else %}
+                                       <div hidden>
+                                             {{ form_widget(form.SecondDriverCIN, {'attr':{'class':'form-control form-control-custom' }}) }}                                                 
+                                             {{ form_widget(form.SecondDriverPermis, {'attr':{'class':'form-control form-control-custom' }}) }}  
+                                             {{ form_widget(form.SecondDriverDateCIN, {'attr':{'class':'form-control form-control-custom' }}) }}                                                 
+                                             {{ form_widget(form.SecondDriverDatePermis, {'attr':{'class':'form-control form-control-custom' }}) }}                                                 
+                                             {{ form_widget(form.SecondDriverDN, {'attr':{'class':'form-control form-control-custom' }}) }}                                                 
+                                       </div>
+                                       {% endif %}
+                                       <div class="col-12">
+                                          <hr>
+                                       </div>
+                                       <div class="col-md-12">
+                                          <div class="form-group">
+                                             <label class="fs-14 text-custom-black fw-500">Pays de Résidence</label>
+                                             <div class="group-form">
+                                             {{ form_widget(form.IP, {'attr':{'class':'custom-select form-control form-control-custom' }}) }}                                                 
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col-12">
+                                          <hr class="mt-0">
+                                          <div class="form-group">
+                                             <label class="fs-14 text-custom-black fw-500">Méthode de paiement</label>
+                                             <div class="group-form">
+                                                <select name="METHD" class="form-control form-control-custom">
+                                                   <option value="EL">En Ligne</option>
+                                                   <option vlaue="AG">À l'agence (20% Avance)</option>
+                                                </select>
+                                             </div>
+                                          </div>
+                                          <div class="action">
+
+                                          {% if GET['err'] is defined %}
+                                             <h5 class="fw-600"><a href="#" class="text-custom-red">{{ GET['err'] }}</a></h5>
+                                             <button class="btn-first btn-submit full-width btn-height" type = "submit" disabled >Reserver
+                                             </button>
+                                          {% else %}
+                                             <button class="btn-first btn-submit full-width btn-height" type = "submit">Reserver
+                                             </button>
+                                          {% endif %}
+                                          </div>
+                                       </div>
+                                    </div>
+                                                                                                                                
+                                   
+                                 {{ form_end(form) }}
+                                 </div>
+                                 <div class="col-lg-4">
+                                    <div class="row">
+                                       <div class="col-12">
+                                          <div class="car-grid mb-xl-30">
+                                             <div class="car-grid-wrapper bx-wrapper">
+                                                <div class="image-sec animate-img"><a href ="{{ path('front_office_car', {'id': vehicule.id}) }}"> <img src="{{ vich_uploader_asset(vehicule, 'Def') }}" class="full-width" alt="img"> </a></div>
+                                                <div class="car-grid-caption padding-20 bg-custom-white p-relative">
+                                                   <h4 class="title fs-16"><a href="{{ path('front_office_car', {'id': vehicule.id}) }}" class="text-custom-black">{{ vehicule.Marque}} : {{ vehicule.Modele }}<small class="text-light-dark">{{ Days }} jour(s)</small></a></h4>
+                                                   <span class="price"><small></small>{{ vehicule.Park.FinHS|date('m-d') >= DP|date('m-d') and vehicule.Park.DebutHS|date('m-d') <= DP|date('m-d')  ? vehicule.PrixHS * Days : vehicule.Prix * Days}} DT {{vehicule.isVAT ? "TTC" : "" }} <small><b>( +{{vehicule.Caut}} DT Cautionnement )</b></small> </span></br>
+                                                   <div class="need-help bx-wrapper padding-20">
+                                                      <div class="col-12">
+                                                         <h6 class="text-custom-black">Options Supplémentaires</h6>
+                                                      </div>
+                                                      <hr>
+                                                      {% if GET['BS'] %}
+                                                      <div class="col-md-12">
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Siège Bébé : {{ GET['BS'] ? BS * Days : "Non" }} {{ GET['BS'] ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      {% if GET['STW'] %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Assurance Passager : {{ GET['STW'] ? STW : "Non" }} {{ GET['STW'] ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      {% if GET['PD'] %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Chauffeur Personel : {{ GET['PD'] ? PD * Days : "Non" }} {{ GET['PD'] ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      {% if GET['SD'] %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Deuxiéme Conducteur : {{ GET['SD'] ? SD  : "Non" }} {{ GET['SD'] ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      {% if GET['RS'] %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Réservoire Plein : {{ GET['RS'] ? RS : "Non" }} {{ GET['RS'] ? "DT" : "" }}</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      {% endif %}
+                                                      <div class="col-md-12">
+                                                         <hr>
+                                                         <div class="form-group">
+                                                            <label class="fs-14 text-custom-black fw-500">Frais de Livraison : {{ frais }} DT</label>
+                                                            <div class="group-form">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="col-12">
+                                                         <h5 class="text-custom-black">Total : <small><b>{{ prix  }} DT {{vehicule.isVAT ? "TTC" : "" }}</b></small></h5>
+                                                      </div>
+                                                      <hr>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="need-help bx-wrapper padding-20">
+                                             <h5 class="text-custom-black">Besoin d'aide ?</h5>
+                                             <p class="text-light-dark">Nous serions plus qu'heureux de vous aider. Notre équipe de conseillers est à votre service 24h/24 et 7j/7 pour vous aider.</p>
+                                             <ul class="custom">
+                                                <li class="text-custom-blue fs-18"> <i class="fas fa-phone-alt"></i> <a href="#" class="text-light-dark">(+216) {{ setting.Tel }}</a> </li>
+                                                <li class="text-custom-blue fs-18"> <i class="fas fa-envelope"></i> <a href="#" class="text-light-dark fs-14">{{ setting.Email }}</a> </li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Blog -->
+      <!-- End Listing detail -->
+      {% endblock %}

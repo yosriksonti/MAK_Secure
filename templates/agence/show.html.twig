@@ -1,0 +1,104 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-xl px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon"><i data-feather="user-plus"></i></div>
+                                Fiche Agence
+                            </h1>
+                        </div>
+                       <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('agence_index') }}">
+                                <i class="me-1" data-feather="arrow-left"></i>
+                                Liste des Agences                           
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-xl px-4 mt-4">
+            <div class="row">
+                <div class="col-xl-12">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Fiche Agence</div>
+                        <div class="card-body">
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <hr>
+                                    <h2 class="small mb-1" for="inputFirstName">Nom</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ agence.Nom }}</p>
+                                    <hr>   
+                                    <h2 class="small mb-1" for="inputFirstName">Addresse</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ agence.Addresse }}</p>
+                                    <hr>
+                                    <h2 class="small mb-1" for="inputFirstName">Frais de Livraison</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ agence.Frais }} DT</p>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <h2 class="small mb-1" for="inputFirstName">Maps</h2>
+                                <div class="col-md-12">
+                                    <iframe src="{{ agence.MapsFrame}}" <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3192.7889744218455!2d10.2151092!3d36.8475297!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cad2e1d7f1bb%3A0x902488d100b5819b!2sTunis-Carthage%20International%20Airport!5e0!3m2!1sen!2stn!4v1689676680569!5m2!1sen!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">Vehicules Sortantes</h2>
+                                    <table id="datatablesSimple">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">
+                                                    Numéro
+                                                </th>
+                                                <th width="45%">
+                                                    Véhicule
+                                                </th>
+                                                <th width="45%">
+                                                    Date Depart
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for  location in  agence.locations %}
+                                                <tr>
+                                                    <td width="45%">
+                                                        <a href="{{ path('location_show',{'id' : location.id}) }}">{{  location.Num }}</a>
+                                                    </td>
+                                                    <td width="45%">
+                                                        <a href="{{ path('vehicule_show',{'id' : location.Vehicule.id}) }}">{{ location.Vehicule.Modele }} : {{  location.Vehicule.Matricule }} </a>
+                                                    </td>
+                                                    <td width="45%">
+                                                        {{ location.Date_Loc }}
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="17">
+                                                        aucune entrée
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

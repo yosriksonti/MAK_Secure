@@ -1,0 +1,53 @@
+
+      <footer class="section-padding footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-6 col-md-6">
+                  <div class="footer-box mb-md-40">
+                     <h4 class="text-custom-white fw-600">À propos</h4>
+                     <div style="color : white">{{ setting.Propos|raw }}</div>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-12">
+                  <div class="footer-box mb-md-40">
+                     <h4 class="text-custom-white fw-600">Contact</h4>
+                     <ul class="m-0 p-0 main">
+                        <li>+(216) {{ setting.Tel }}</li>
+                        <li>{{ setting.Address }}</li>
+                        <li>{{ setting.Email }}</li>
+                     </ul>
+                     <ul class="custom-flex socials">
+                        <li><a href="#" class="text-custom-white fs-14" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" class="text-custom-white fs-14" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://wa.me/+216{{setting.Tel}}" class="text-custom-white fs-14" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-12">
+                  <div class="footer-box mb-md-40">
+                     <h4 class="text-custom-white fw-600">Nos Partenaires</h4>
+                     <div class="logo">
+                        <a href="#" target="_blank">
+                           <img src="{{ asset('front-office/assets/images/maktravel.png') }}" style="height : 10em;width : 10em;" class="img-fluid" alt="logo"/>
+                        <a>
+                     </div>
+                     <hr>
+                     <div class="logo">
+                        <a href="#" target="_blank">
+                           <img src="{{ asset('front-office/assets/images/makauto.jpeg') }}" style="height : 10em;width : 10em;" class="img-fluid" alt="logo"/>
+                        <a>
+                     </div>
+                     
+               </div>
+            </div>
+         </div>
+      </footer>
+      <div class="copyright">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <p class="text-custom-white">© MBM Lab - 2022 | All Right Reserved</p>
+               </div>
+            </div>
+         </div>
+      </div>

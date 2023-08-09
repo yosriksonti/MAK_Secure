@@ -1,0 +1,154 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                Liste des Véhicules                                                                                                                 
+                            </h1>
+                        </div>
+                        <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('vehicule_new') }}">
+                                <i class="me-1" data-feather="user-plus"></i>
+                                Ajouter Véhicule                            
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-fluid px-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Matricule
+                                </th>
+                                <th>
+                                    Park
+                                </th>
+                                <th>
+                                    Marque
+                                </th>
+                                <th>
+                                    Modele
+                                </th>
+                                <th>
+                                    Categorie
+                                </th>
+                                
+                                <th>
+                                    Carburant
+                                </th>
+                                <th>
+                                    Places
+                                </th>
+                                <th>
+                                    Portes
+                                </th>
+                                <th>
+                                    Caut
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for vehicule in vehicules %}
+                                <tr>
+                                    <td>
+                                        {{ vehicule.Matricule }}
+                                    </td>
+                                    <td>
+                                       <a class="text-muted me-3" href="{{ path('park_show',{'id' : vehicule.Park.id}) }}">{{ vehicule.Park.Nom }}</a>
+                                    </td>
+                                    <td>
+                                        {{ vehicule.Marque }}
+                                    </td>
+                                    <td>
+                                        {{ vehicule.Modele }}
+                                    </td>
+                                    <td>
+                                        {{ vehicule.Categorie }}
+                                    </td>
+                                    <td>
+                                        {{ vehicule.Carb }}
+                                    </td>
+                                    <td>
+                                        {{ vehicule.NbPlaces }}
+                                    </td>
+                                    <td>
+                                        {{ vehicule.NbPortes }}
+                                    </td>
+                                    <td>
+                                        {{ vehicule.Caut }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('vehicule_show', {'id': vehicule.id}) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('vehicule_edit', {'id': vehicule.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                            {{ include('vehicule/_delete_form.html.twig') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="17">
+                                        no records found
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+            {% for modele,dispo in dispos %}
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-right">
+                                        <li class="nav-item dropdown no-caret d-sm-block me-3 dropdown-notifications">
+                                            <a class="btn btn-transparent-dark dropdown-toggle" id="navbarDropdownStat1" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <h3>{{ modele }}</h3>
+                                                <span>({{ dispo|length }})</span>                     
+                                            </a>
+                                            <div class="dropdown-menu border-0 shadow animated--fade-in-up"  aria-labelledby="navbarDropdownStat1">
+                                                {% for disp in dispo %}
+                                                <a class="nav-link" href="{{ path('vehicule_show',{'id':disp.id})}}">
+                                                    <div class="dropdown-notifications-item-content">
+                                                        <div class="dropdown-notifications-item-content-details">
+                                                            <h3 >{{ disp.Matricule }}</h3>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                {% endfor %}
+                                            </div>
+                                        </li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

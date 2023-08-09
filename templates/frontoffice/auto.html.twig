@@ -1,0 +1,126 @@
+{% extends 'frontoffice/index.html.twig' %}
+{% block content %}
+      <!-- End Subheader --><!-- Start Blog -->
+      <div class="subheader normal-bg section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <h1 class="text-custom-white">Detailles Vehicule</h1>
+                  <ul class="custom-flex justify-content-center">
+                     <li class="fw-500"><a href="/" class="text-custom-white">Acceuil</a></li>
+                     <li class="fw-500"><a href="{{ path('front_office_cars') }}" class="text-custom-white">Vehicules</a></li>
+                     <li class="active fw-500">Detailles Vehicule</li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Subheader --><!-- Start Listing detail -->
+      <section class="section-padding bg-light-white listing-details">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="listing-details-inner  bg-custom-white padding-20">
+                     <div class="row">
+                        <div class="col-lg-8">
+                           <div class="car-slider arrow-layout-2 row">
+                              {% for picture in auto.pictures %}
+                              <div class="slide-item col-12">
+                                 <div class="car-grid">
+                                    <div class="car-grid-wrapper car-grid bx-wrapper">
+                                       <div class="image-sec animate-img"><a href="{{ vich_uploader_asset(picture, 'imageFile') }}" target="_blank"><img src="{{ vich_uploader_asset(picture, 'imageFile') }}" class="full-width" alt="img"></a></div>
+                                    </div>
+                                 </div>
+                              </div>
+                              {% endfor %}
+                           </div>
+                           <hr>
+                           <div class="listing-meta-sec mb-md-80">
+                              <div class="tabs">
+                                 <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="overview">
+                                          <h4 class="text-custom-black">Agréments</h4>
+                                          <ul class="custom amenities row no-gutters mb-xl-20">
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class="fa fa-user"></i>{{auto.NbPlaces}} Places </div>
+                                             </li>
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class="fa fa-door-open"></i>{{auto.NbPortes}} Portes </div>
+                                             </li>
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class="fa fa-briefcase"></i>{{auto.NbVal}} Valises </div>
+                                             </li>
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class='fa fa-snowflake'></i>Climatisation : {{auto.isClim ? "Oui" : "Non" }} </div>
+                                             </li>
+                                          </ul>
+                                          <h4 class="text-custom-black">Aperçu</h4>
+                                          <div class="row">
+                                             <div class="col-md-6">
+                                                <div class="hotel-type mb-xl-20 bg-light-white padding-10">
+                                                   <ul class="custom">
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Boite</label>{{auto.Boite}}</li>
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Categorie</label>{{auto.Categorie}}</li>
+                                                   </ul>
+                                                </div>
+                                             </div>
+                                             <div class="col-md-6">
+                                                <div class="hotel-type mb-xl-20 bg-light-white padding-10">
+                                                   <ul class="custom">
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Modele</label>{{auto.Marque}} : {{auto.Modele}}</li>
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Kilométrage</label>{{ auto.Kilos }} km</li>
+                                                   </ul>
+                                                </div>
+                                             </div>
+                                             <div class="col-12">
+                                                <div class="information">
+                                                   <h4 class="text-custom-black">Description</h4>
+                                                   <p class="text-light-dark">{{auto.DescriptionDet}}</p>
+                                                </div>
+                                             </div>
+                                          </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="car-grid mb-xl-30">
+                                    <div class="car-grid-wrapper bx-wrapper">
+                                       <div class="car-grid-caption padding-20 bg-custom-white p-relative">
+                                          <div class="need-help bx-wrapper padding-20">
+                                             <div class="col-12">
+                                                <h6 class="text-custom-black">A Partir de</h6>
+                                             </div>
+                                             <hr>
+                                             <div class="col-12">
+                                                <h5 class="text-custom-black"><b style="color:red">{{ auto.Prix|number_format(3,".",",") }} <small>DT {{auto.isVAT ? "TTC" : "" }} <small></b></h5>
+                                             </div>
+                                             <hr>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-12">
+                                 <div class="need-help bx-wrapper padding-20">
+                                    <h5 class="text-custom-black">Besoin d'aide ?</h5>
+                                    <p class="text-light-dark">Nous serions plus qu'heureux de vous aider. Notre équipe de conseillers est à votre service 24h/24 et 7j/7 pour vous aider.</p>
+                                    <ul class="custom">
+                                       <li class="text-custom-blue fs-18"> <i class="fas fa-phone-alt"></i> <a href="#" class="text-light-dark">(+216) {{ setting.Tel }}</a> </li>
+                                       <li class="text-custom-blue fs-18"> <i class="fas fa-envelope"></i> <a href="#" class="text-light-dark fs-14">{{ setting.Email }}</a> </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Listing detail -->
+      {% endblock %}

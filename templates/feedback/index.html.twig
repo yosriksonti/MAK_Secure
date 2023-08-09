@@ -1,0 +1,96 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                 Liste des Feedbacks                                                                                                                 
+                            </h1>
+                        </div>
+                        <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('feedback_new') }}">
+                                <i class="me-1" data-feather="user-plus"></i>
+                                Ajouter Feedback                            
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-fluid px-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Rating
+                                </th>
+                                <th>
+                                    Client
+                                </th>
+                                <th>
+                                    Vehicule
+                                </th>
+                                <th>
+                                    Visible
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for  feedback in  feedbacks %}
+                                <tr>
+                                    <td>
+                                        {{  feedback.created_On }}
+                                    </td>
+                                    <td>
+                                        {{  feedback.Rating }}/5
+                                    </td>
+                                    <td>
+                                       <a class="text-muted me-3" href="{{ path('client_show',{'id' : feedback.Client.id }) }}">{{ feedback.Client.CIN }}</a>
+                                    </td>
+                                    <td>
+                                       {% if feedback.Vehicule %} <a class="text-muted me-3" href="{{ path('vehicule_show',{'id' : feedback.Vehicule.id }) }}">{{ feedback.Vehicule.Modele }} : {{ feedback.Vehicule.Matricule }}</a> {% endif %}
+                                    </td>
+                                    <td>
+                                        {{  feedback.Visible ? 'Oui' : 'Non' }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('feedback_show', {'id':  feedback.id}) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('feedback_edit', {'id':  feedback.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                            {{ include('feedback/_delete_form.html.twig') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="17">
+                                        aucune entrée
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

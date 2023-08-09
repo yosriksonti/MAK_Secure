@@ -1,0 +1,221 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-xl px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon"><i data-feather="user-plus"></i></div>
+                                Fiche Reservation
+                            </h1>
+                        </div>
+                       <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('location_index') }}">
+                                <i class="me-1" data-feather="arrow-left"></i>
+                                Liste des Reservations                           
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-xl px-4 mt-4">
+            <div class="row">
+                <div class="col-xl-12">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Fiche Reservation</div>
+                        <div class="card-body">
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Numéro</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.Num }}</p>                              
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Pays</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.IP }}</p>         
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Date de reservation</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.Date_Res }}</p>                                
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Type</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.Type  }}</p>                             
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Etat</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.Etat }}</p>                               
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Status</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.Status }}</p>                                
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Montant</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.Montant }} DT</p>                               
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Avance</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.Avance }} DT</p>                               
+                                </div>
+
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Reservoire Plein</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.isReservoire ? 'oui' : 'non' }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Date de location</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.Date_Loc }}</p>                               
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Date de retour</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.Date_Retour }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Agence de depart</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.AgenceDepart.Nom }}</p>                               
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Agence de retour</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.AgenceArrive.Nom }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Client</h2>
+                                    <a href="{{ path('client_show',{'id' : location.Client.id, }) }}">{{ location.Client.Name }}</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Vehicule</h2>
+                                    <a href="{{ path('vehicule_show',{'id' : location.Vehicule.id, }) }}">{{ location.Vehicule.Modele }} : {{ location.Vehicule.Matricule }}</a>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-3">
+                                    <h2 class="small mb-1" for="inputFirstName">Siège Bébé</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.isBabySeat ? 'oui' : 'non' }}</p>                              
+                                </div>
+                                <div class="col-md-3">
+                                    <h2 class="small mb-1" for="inputFirstName">Chauffeur Personnel</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.isPersonalDriver ? 'oui' : 'non' }}</p>                              
+                                </div>
+                                <div class="col-md-3">
+                                    <h2 class="small mb-1" for="inputFirstName">Deuxiéme Conducteur</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.isSecondDriver ? 'oui' : 'non' }}</p>                              
+                                </div>
+                                <div class="col-md-3">
+                                    <h2 class="small mb-1" for="inputFirstName">Assurance Passager</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.isSTW ? 'oui' : 'non' }}</p>                              
+                                </div>
+                            </div>
+                            <hr>
+                            {% if location.isSecondDriver %}
+                            <h2 class=" mb-1" for="inputFirstName">Deuxiéme Conducteur</h2>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">CIN</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.SecondDriverCIN }}</p>                              
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Date de livraison</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.SecondDriverDateCIN|date('d/m/Y') }}</p>                              
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Permis</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.SecondDriverPermis }}</p>                              
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Date de livraison</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.SecondDriverDatePermis|date('d/m/Y') }}</p>                              
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Date de naissance</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ location.SecondDriverDN|date('d/m/Y') }}</p>                              
+                                </div>
+                            </div>
+                            <hr>
+                            {% endif %}
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">Historique Payments</h2>
+
+                                    <table id="datatablesSimple">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">
+                                                    Session ID
+                                                </th>
+                                                <th width="45%">
+                                                    Status
+                                                </th>
+                                                <th width="10%">
+                                                    Total
+                                                </th>
+                                                <th width="45%">
+                                                    Client
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for  payment in  location.payments %}
+                                                <tr>
+                                                    <td width="45%">
+                                                        <a href="{{ path('payment_show',{'id' : payment.id, }) }}">{{  payment.sessionId }}</a>
+                                                    </td>
+                                                    <td width="45%">
+                                                        {{  payment.Status }}
+                                                    </td>
+                                                    <td width="45%">
+                                                        {{  payment.Total }}
+                                                    </td>
+                                                    <td width="45%">
+                                                        <a href="{{ path('client_show',{'id' : payment.Client.id, }) }}">{{  payment.Client.Name }}</a>
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="17">
+                                                        aucune entrée
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Form Group (email address)-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

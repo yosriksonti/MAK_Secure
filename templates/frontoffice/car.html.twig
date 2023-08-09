@@ -1,0 +1,221 @@
+{% extends 'frontoffice/index.html.twig' %}
+{% block content %}
+      <!-- End Subheader --><!-- Start Blog -->
+      <div class="subheader normal-bg section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <h1 class="text-custom-white">Detailles Vehicule</h1>
+                  <ul class="custom-flex justify-content-center">
+                     <li class="fw-500"><a href="/" class="text-custom-white">Acceuil</a></li>
+                     <li class="fw-500"><a href="{{ path('front_office_cars') }}" class="text-custom-white">Vehicules</a></li>
+                     <li class="active fw-500">Detailles Vehicule</li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Subheader --><!-- Start Listing detail -->
+      <section class="section-padding bg-light-white listing-details">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="listing-details-inner  bg-custom-white padding-20">
+                     <div class="row">
+                        <div class="col-lg-8">
+                           <div class="detail-slider-for mb-xl-20 magnific-gallery">
+                              <div class="image-sec animate-img"><img src="{{ vich_uploader_asset(vehicule, 'Def') }}" class="image-fit" alt="img"></div>
+                           </div>
+                           <hr>
+                           <div class="listing-meta-sec mb-md-80">
+                              <div class="tabs">
+                                 <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="overview">
+                                          <h4 class="text-custom-black">Agréments</h4>
+                                          <ul class="custom amenities row no-gutters mb-xl-20">
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class="fa fa-user"></i>{{vehicule.NbPlaces}} Places </div>
+                                             </li>
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class="fa fa-briefcase"></i>{{vehicule.NbVal}} Valises </div>
+                                             </li>
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class='fa fa-snowflake'></i>Climatisation : {{vehicule.isClim ? "Oui" : "Non" }} </div>
+                                             </li>
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class="fas fa-tachometer-alt"></i>Kilométrage Illimité : {{vehicule.isUnlimitedMileage ? "Oui" : "Non" }} </div>
+                                             </li>
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class="fa fa-gas-pump"></i>Réservoire Plein : {{vehicule.Reservoire }} DT</div>
+                                             </li>
+                                             <li class="col-sm-6">
+                                                <div class="icon-box text-light-dark"><i class="fa fa-umbrella"></i>Assurance Passager : {{vehicule.isPassengerInsurance ? "Oui" : "Non" }}</div>
+                                             </li>
+                                          </ul>
+                                          <h4 class="text-custom-black">Aperçu</h4>
+                                          <div class="row">
+                                             <div class="col-md-6">
+                                                <div class="hotel-type mb-xl-20 bg-light-white padding-10">
+                                                   <ul class="custom">
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Boite</label>{{vehicule.Boite}}</li>
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Categorie</label>{{vehicule.Categorie}}</li>
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Modele</label>{{vehicule.Marque}} : {{vehicule.Modele}}</li>
+                                                   </ul>
+                                                </div>
+                                             </div>
+                                             <div class="col-md-6">
+                                                <div class="hotel-type mb-xl-20 bg-light-white padding-10">
+                                                   <ul class="custom">
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Carburant</label>{{vehicule.Carb}}</li>
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Cautionnement</label>{{vehicule.Caut}} DT</li>
+                                                      <li class="text-light-dark"><label class="no-margin text-custom-blue">Prix</label>
+                                                      {% if GET['DP'] is defined %}
+                                                      {{ vehicule.Park.FinHS|date('m-d') >= GET['DP']|date('m-d') and vehicule.Park.DebutHS|date('m-d') <= GET['DP']|date('m-d') ? vehicule.PrixHS : vehicule.Prix}} DT {{vehicule.isVAT ? "TTC" : "" }}
+                                                      {% else %}
+                                                      {{ vehicule.Park.FinHS|date('m-d') >= today|date('m-d') and vehicule.Park.DebutHS|date('m-d') <= today|date('m-d') ? vehicule.PrixHS : vehicule.Prix}} DT {{vehicule.isVAT ? "TTC" : "" }}
+                                                      {% endif %}
+                                                      </li>
+                                                   </ul>
+                                                </div>
+                                             </div>
+                                             <div class="col-12">
+                                                <div class="information">
+                                                   <h4 class="text-custom-black">Description</h4>
+                                                   <p class="text-light-dark">{{vehicule.DescriptionDet}}</p>
+                                                </div>
+                                             </div>
+                                          </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="blog-details bg-custom-white">
+                                    <hr>
+                                    <!-- post pagination --><!-- comments -->
+                                    <div class="comment-box section-padding-top p-relative">
+                                       <div id="comment-box">
+                                          <h4 class="text-custom-black fw-600">Feedbacks [{{ feedbacks|length}}]</h4>
+                                          <ul class="comments custom">
+                                          {% for feedback in feedbacks %}
+                                             <li class="comment">
+                                                <article>
+                                                   <div class="comment-content">
+                                                      <div class="comment-meta">
+                                                         <div class="comment-meta-header">
+                                                            <h5 class="text-custom-black fw-600 author mb-3">{{ feedback.Client.Name }} {{ feedback.Client.Lastname }}</h5>
+                                                            <div class="post-date"><p  class="date bg-custom-blue text-custom-white">{{ feedback.created_On}}</p></div>
+                                                         </div>
+                                                         <div class="comment-meta-reply"><p href="" class="comment-reply-link btn-first btn-submit">{{ feedback.Rating}}/5</p></div>
+                                                      </div>
+                                                      <div class="comment">
+                                                         <p class="text-light-dark">{{ feedback.Body }}</p>
+                                                      </div>
+                                                   </div>
+                                                </article>
+                                             </li>
+                                          {% endfor %}
+                                          </ul>
+                                          {% if app.user %}
+                                          <div class="comment-respond" id="respond">
+                                             <h4 class="text-custom-black fw-600">Laissez un Feedback</h4>
+                                             {{ form_start(form) }}
+                                                <div hidden="true">
+                                                   {{ form_widget(form.Vehicule, {'attr':{'class':'hidden-row'}, "value" : null})  }}  
+                                                   {{ form_row(form.Client, {'attr':{'class':'hidden', "value" : app.user.Email} }) }}  
+                                                   {{ form_widget(form.Visible, {'attr':{'class':'hidden-row'}, "value" : "0"}) }}  
+                                                   {{ form_widget(form.createdOn, {'attr':{'class':'hidden-row'}, "value" : today}) }}    
+                                                                                          
+                                                </div>
+                                                <div class="row">
+                                                   <div class="col-8">
+                                                      <div class="form-group">
+                                                         <label class="text-custom-black fw-500 fs-14">Feedback</label>
+                                                         {{ form_widget(form.Body, {'attr':{'class':'form-control form-control-custom', 'rows':'4', 'placeholder':"Comment"}}) }}                                                 
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-4">
+                                                      <div class="form-group">
+                                                         <label class="text-custom-black fw-500 fs-14">Rating</label>
+                                                         {{ form_widget(form.Rating, {'attr':{'class':'form-control form-control-custom', 'max':'5','min':'0', 'placeholder':"5"}}) }}                                                 
+                                                      </div>
+                                                      <button type="submit" class="btn-first btn-submit full-width btn-height">Laissez un Feedback</button>
+                                                   </div>
+                                                </div>
+                                          {{ form_end(form) }}
+                                          </div>
+                                          {% endif %}
+                                       </div>
+                                    </div>
+                                    <!-- comments -->
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="quick-quote bx-wrapper padding-20 mb-xl-30">
+                                 {% if GET['err'] is defined %}
+                                    <div>
+                                    <h5 class="text-custom" style="color:red">{{ GET['err'] }}</h5>
+                                    </div>
+                                    <hr>
+                                 {% endif %}
+                                    <h5 class="text-custom-black">Reservez Maintenant</h5>
+                                       <form action="{{path('front_office_booking',{'id' : vehicule.id})  }}" method="GET">
+                                       <div class="row">
+                                          <div class="col-12">
+                                             <div class="form-group">
+                                                <label class="fs-14 text-custom-black fw-500">Départ</label>
+                                                <select class="custom-select form-control form-control-custom" name="AP">
+                                                   {% for  agence in  agences %}
+                                                <option value="{{  agence.id }}">{{  agence.Nom }}</option>
+                                                {% endfor %}
+                                                </select>                                              
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="fs-14 text-custom-black fw-500">Date Départ</label>
+                                                <div class="input-group group-form">
+                                                   <input type="date" name="DP" class="form-control form-control-custom"  value = "{{ GET['DP'] is defined ? GET['DP'] : ""  }}" min="{{today}}">
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="fs-14 text-custom-black fw-500">Retour</label>
+                                                <select class="custom-select form-control form-control-custom" name="AD">
+                                                   {% for  agence in  agences %}
+                                                <option value="{{  agence.id }}">{{  agence.Nom }}</option>
+                                                {% endfor %}
+                                                </select>                                             
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="fs-14 text-custom-black fw-500">Date Retour</label>
+                                                <div class="input-group group-form">
+                                                   <input type="date" name="DD" class="form-control form-control-custom"  value = "{{ GET['DD'] is defined ? GET['DD'] : ""}}" min="{{next}}" max="{{max}}">
+                                                </div>
+                                             </div>
+                                             <button type="submit" class="btn-first btn-submit full-width btn-height">Reserver</button>
+                                          </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                                 <div class="need-help bx-wrapper padding-20">
+                                    <h5 class="text-custom-black">Besoin d'aide ?</h5>
+                                    <p class="text-light-dark">Nous serions plus qu'heureux de vous aider. Notre équipe de conseillers est à votre service 24h/24 et 7j/7 pour vous aider.</p>
+                                    <ul class="custom">
+                                       <li class="text-custom-blue fs-18"> <i class="fas fa-phone-alt"></i> <a href="#" class="text-light-dark">(+216) {{ setting.Tel }}</a> </li>
+                                       <li class="text-custom-blue fs-18"> <i class="fas fa-envelope"></i> <a href="#" class="text-light-dark fs-14">{{ setting.Email }}</a> </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Listing detail -->
+      {% endblock %}

@@ -1,0 +1,108 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                 Liste des Reservations                                                                                                                 
+                            </h1>
+                        </div>
+                        <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('location_new') }}">
+                                <i class="me-1" data-feather="user-plus"></i>
+                                Ajouter Reservation                            
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-fluid px-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Numéro
+                                </th>
+                                <th>
+                                    Date Location
+                                </th>
+                                <th>
+                                    Date Retour
+                                </th>
+                                <th>
+                                    Montant
+                                </th>
+                                <th>
+                                    Etat
+                                </th>
+                                <th>
+                                    Client
+                                </th>
+                                <th>
+                                    Vehicule
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for  location in  locations %}
+                                <tr>
+                                    <td>
+                                        {{  location.Num }}
+                                    </td>
+                                    <td>
+                                        {{  location.DateLoc ? location.DateLoc|date('d-m-Y') : '' }}
+                                    </td>
+                                    <td>
+                                        {{  location.DateRetour ? location.DateRetour|date('d-m-Y') : '' }}
+                                    </td>
+                                    <td>
+                                        {{  location.Montant }} DT
+                                    </td>
+                                    <td>
+                                        {{  location.Etat }}
+                                    </td>
+                                    <td>
+                                       <a class="text-muted me-3" href="{{ path('client_show',{'id' : location.Client.id, }) }}">{{ location.Client.Name }}</a>
+                                    </td>
+                                    <td>
+                                       <a class="text-muted me-3" href="{{ path('vehicule_show',{'id' : location.Vehicule.id, }) }}"">{{ location.Vehicule.Modele }} : {{ location.Vehicule.Matricule }}</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('location_show', {'id':  location.id}) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('location_edit', {'id':  location.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                            {{ include('location/_delete_form.html.twig') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="17">
+                                        aucune entrée
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

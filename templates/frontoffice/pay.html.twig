@@ -1,0 +1,67 @@
+{% extends 'frontoffice/index.html.twig' %}
+{% block content %}
+      <div class="slider p-relative">
+         <div class="main-banner arrow-layout-1 ">
+            <div class="slide-item">
+               <img src="{{ asset('front-office/assets/images/car-1.jpg') }}" class="image-fit" alt="Slider">
+               <div class="transform-center">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-lg-7">
+                           <div class="slider-content">
+                              <h1 class="text-custom-white">Upto 25% off on first booking <span class="text-custom-blue">Car</span> through your app!</h1>
+                              <ul class="custom">
+                                 <li class="text-custom-white"><i class="fas fa-dollar-sign"></i>Best Price Guaranteed </li>
+                                 <li class="text-custom-white"><i class="fas fa-car"></i>Home Pickups </li>
+                                 <li class="text-custom-white"><i class="fas fa-laptop"></i>Easy Bookings </li>
+                                 <li class="text-custom-white"><i class="fas fa-headphones-alt"></i>24/7 Customer Care </li>
+                              </ul>
+                              <a href="{{ path('front_office_cars') }}" class="btn-first btn-small">Notre Gallerie</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="slide-item">
+               <img src="{{ asset('front-office/assets/images/car-1.jpg') }}" class="image-fit" alt="Slider">
+               <div class="transform-center">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-lg-7">
+                           <div class="slider-content">
+                              <h1 class="text-custom-white">Upto 25% off on first booking <span class="text-custom-blue">Car</span>through your app!</h1>
+                              <ul class="custom">
+                                 <li class="text-custom-white"><i class="fas fa-dollar-sign"></i>Best Price Guaranteed </li>
+                                 <li class="text-custom-white"><i class="fas fa-car"></i>Home Pickups </li>
+                                 <li class="text-custom-white"><i class="fas fa-laptop"></i>Easy Bookings </li>
+                                 <li class="text-custom-white"><i class="fas fa-headphones-alt"></i>24/7 Customer Care </li>
+                              </ul>
+                              <a href="{{ path('front_office_cars') }}" class="btn-first btn-small">Notre Gallerie</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="slide-item">
+               <img src="{{ asset('front-office/assets/images/car-1.jpg') }}" class="image-fit" alt="Slider">
+               <div class="transform-center">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-lg-7">
+                           <div class="slider-content">
+                              <h1 class="text-custom-white">Book your <span class="text-custom-blue">Car</span>through your app!</h1>
+                              <p class="text-custom-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                              <a href="{{ path('front_office_cars') }}" class="btn-first btn-small">Notre Gallerie</a> 
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Slider -->
+      <!-- Start Banner tabs -->
+      {% endblock %}

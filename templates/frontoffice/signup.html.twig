@@ -1,0 +1,126 @@
+{% extends 'frontoffice/index.html.twig' %}
+{% block content %}
+      <!-- End Subheader --><!-- Start Listing detail -->
+      <section class="section-padding bg-light-white listing-details">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="listing-details-inner  bg-custom-white padding-20">
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="blog-details bg-custom-white">
+                                    <hr>
+                                    <!-- tags & social -->
+                                    
+                                    <!-- tags & social --><!-- post author -->
+                                    <div class="bg-light-white padding-15 mb-xl-20">
+                                       <div class="author-caption">
+                                       {{ form_start(form) }}
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">E-mail</label>
+                                                   {{ form_widget(form.email, {'attr':{'class':'form-control form-control-custom',}}) }}                                                 
+                                                </div>
+                                          <div class="row">
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Nom</label>
+                                                   {{ form_widget(form.name, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Prénom</label>
+                                                   {{ form_widget(form.lastname, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="row">
+                                          <div hidden>
+                                             <div class="col-0">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Pays</label>
+                                                   {{ form_widget(form.Pays, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                          </div>
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Naissance</label>
+                                                   {{ form_widget(form.Date_Naissance, {'attr':{'class':'form-control form-control-custom'}}) }} 
+                                                </div>
+                                             </div>
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Télephone</label>
+                                                   {{ form_widget(form.Telephone, {'attr':{'class':'form-control form-control-custom'}}) }} 
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="row">
+                                             <div class="col-8">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Permis</label>
+                                                   {{ form_widget(form.Permis, {'attr':{'class':'form-control form-control-custom' }}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-4">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Date Livraison</label>
+                                                   {{ form_widget(form.Date_Permis, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div hidden>
+                                          <div class="row">
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Addresse 1</label>
+                                                   {{ form_widget(form.Add1, {'attr':{'class':'form-control form-control-custom', 'value' : ' '}}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Addresse 2</label>
+                                                   {{ form_widget(form.Add2, {'attr':{'class':'form-control form-control-custom', 'value' : ' '}}) }} 
+                                                </div>
+                                             </div>
+                                          </div>
+                                          </div>
+                                          
+                                          <div class="row">
+                                             <div class="col-8">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">CIN</label>
+                                                   {{ form_widget(form.CIN, {'attr':{'class':'form-control form-control-custom' }}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-4">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Date Livraison</label>
+                                                   {{ form_widget(form.Date_CIN, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                          </div>
+                                          
+                                          {{ form_rest(form) }}
+                                          </br>
+                                          <div class="row">
+                                             <button type="submit" class="btn-first btn-submit full-width btn-height">Créer un compte</button>
+                                          </div>
+                                       {{ form_end(form) }}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Listing detail -->
+      {% endblock %}

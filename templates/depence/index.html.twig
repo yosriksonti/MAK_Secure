@@ -1,0 +1,148 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                 Liste des Dépenses                                                                                                                 
+                            </h1>
+                        </div>
+                        <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('depence_new') }}">
+                                <i class="me-1" data-feather="user-plus"></i>
+                                Ajouter Dépense                            
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-fluid px-4">
+            <div class="card">
+                <div class="card-body">
+                <hr>  
+                    <form method="GET">
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (first name)-->
+                        <div class="col-md-4">
+                            <h2 class="small mb-1" for="inputFirstName">Début</h2>
+                            <input class="form-control" type="date" name="from" required {% if GET['from'] is defined and GET['from'] is not null %} value="{{ GET['from'] |date('Y-m-d') }}" {% endif %}></input>
+                        </div>
+                        <div class="col-md-4">
+                            <h2 class="small mb-1" for="inputFirstName">Fin</h2>
+                            <input class="form-control" type="date" name="to" required {% if GET['to'] is defined and GET['to'] is not null %} value="{{ GET['to'] |date('Y-m-d') }}" {% endif %}></input>
+                        </div>
+                        <div class="col-md-4">
+                            <br>
+                            <button class="btn btn-outline-success" type="submit" style="float:left">Filter</button>
+                        </div>
+                    </div>
+                    </form>
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (first name)-->
+                        <div class="col-md-12">
+                            <hr>
+                            <h2 class="small mb-1" for="inputFirstName">Dépenses</h2>
+                            <div id="area-chart" ></div>
+                            <hr>  
+                        </div>
+                    </div>
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Designation
+                                </th>
+                                <th>
+                                    Montant
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Véhicule
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for  depence in  depences %}
+                                <tr>
+                                    <td>
+                                        {{  depence.Designation }}
+                                    </td>
+                                    <td>
+                                        {{  depence.Prix }} DT
+                                    </td>
+                                    <td>
+                                        {{  depence.Date ? depence.Date|date('Y-m-d') : '' }}
+                                    </td>
+                                    <td>
+                                       <a class="text-muted me-3" href="{{ path('vehicule_show',{'id' : depence.Vehicule }) }}">{{ depence.Vehicule.Modele }} : {{ depence.Vehicule.Matricule }}</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('depence_show', {'id':  depence.id}) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('depence_edit', {'id':  depence.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                            {{ include('depence/_delete_form.html.twig') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="17">
+                                        aucune entrée
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+var data = [
+    {% set sum = 0 %}
+    {% for date,dpn in dpns|sort((a, b) => a[0].Date <=> b[0].Date) %}
+        {% for depence in dpn %}
+            {% set sum = sum + depence.Prix %}
+        {% endfor %}
+        { y: '{{ date|date("Y-m-d") }}', a: {{ sum }} },
+    {% endfor %}
+    ],
+    config = {
+        data: data,
+        xkey: 'y',
+        ykeys: [ 'a'],
+        labels: [ 'Payé'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        behaveLikeLine: true,
+        resize: true,
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors:['red']
+    };
+    config.element = 'area-chart';
+    Morris.Area(config);
+</script>
+
+{% endblock %}

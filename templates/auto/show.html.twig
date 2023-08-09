@@ -1,0 +1,149 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-xl px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon"><i data-feather="user-plus"></i></div>
+                                Fiche Véhicule
+                            </h1>
+                        </div>
+                       <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('auto_index') }}">
+                                <i class="me-1" data-feather="arrow-left"></i>
+                                Liste des Véhicules                           
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-xl px-4 mt-4">
+            <div class="row">
+                <div class="col-xl-4">
+
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Carte Grise</div>
+                        <div class="card-body text-center">
+                            <!-- Profile picture image-->
+                            <img class="img-account-profile mb-2" src="{{ vich_uploader_asset(auto, 'Grise') }}" alt="" />
+                        </div>
+                    </div>
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Images</div>
+                        {% for picture in auto.pictures %}
+                        <div class="card-body text-center">
+                            <!-- Profile picture image-->
+                            <img class="img-account-profile mb-2" src="{{ vich_uploader_asset(picture, 'imageFile') }}" alt="" />
+                            <a style="small">
+                                {{ include('auto/_delete_picture_form.html.twig') }}
+                            </a>
+                        </div>
+                        <hr>
+                        {% endfor %}
+                        <div class="card-body text-center">
+                            <a style="small" href="{{ path('auto_edit_picture',{'id' : auto.id}) }}">
+                                <button class="btn"><i class="fa-solid fa-plus"></i></button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Fiche Vehicule</div>
+                        <div class="card-body">
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Marque</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.Marque }}</p>                              
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Modele</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.Modele }}</p>         
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Categorie</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.Categorie }}</p>                                
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Boite de vitesse</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.Boite }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Matricule</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.Matricule }}</p> 
+                                </div>
+
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Carburant</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.Carb }}</p>                                
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Places</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.NbPlaces }}</p>                             
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Portes</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.NbPortes }}</p>                               
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Valises</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.NbVal }}</p>                                
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Prix</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.Prix }} DT</p>                                
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Kilométrage</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.Kilos }} Km</p>                                
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Climatisé</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.Clim ? 'oui' : 'non' }}</p>                                
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">TTC</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ auto.isVAT ? 'oui' : 'non' }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                             <div class="row gx-3 mb-3">
+                                <h2 class="small mb-1" for="inputFirstName">Description</h2>
+                                <p class=" mb-1" for="inputFirstName">{{ auto.Description }}</p>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <h2 class="small mb-1" for="inputFirstName">Description Detaillé</h2>
+                                <p class=" mb-1" for="inputFirstName">{{ auto.DescriptionDet }}</p>                              
+                            </div>
+                            <!-- Form Group (email address)-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

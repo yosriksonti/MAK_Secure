@@ -1,0 +1,285 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-xl px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon"><i data-feather="user-plus"></i></div>
+                                Fiche Véhicule
+                            </h1>
+                        </div>
+                       <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('vehicule_index') }}">
+                                <i class="me-1" data-feather="arrow-left"></i>
+                                Liste des Véhicules                           
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-xl px-4 mt-4">
+            <div class="row">
+                <div class="col-xl-4">
+
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Carte Grise</div>
+                        <div class="card-body text-center">
+                            <!-- Profile picture image-->
+                            <img class="img-account-profile mb-2" src="{{ vich_uploader_asset(vehicule, 'Grise') }}" alt="" />
+                        </div>
+                    </div>
+                    <!-- Profile picture card-->
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Photo Default</div>
+                        <div class="card-body text-center">
+                            <!-- Profile picture image-->
+                            <img class="img-account-profile  mb-2" src="{{ vich_uploader_asset(vehicule, 'Def') }}" alt="" />
+                        </div>
+                    </div>
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Photo Réel</div>
+                        <div class="card-body text-center">
+                            <!-- Profile picture image-->
+                            <img class="img-account-profile  mb-2" src="{{ vich_uploader_asset(vehicule, 'Reel') }}" alt="" />
+                        </div>
+                    </div>
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Photo Saison</div>
+                        <div class="card-body text-center">
+                            <!-- Profile picture image-->
+                            <img class="img-account-profile  mb-2" src="{{ vich_uploader_asset(vehicule, 'Saison') }}" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Fiche Vehicule ({{ vehicule.Dispo ? 'Disponible' : 'Indisponible'}})</div>
+                        <div class="card-body">
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Marque</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Marque }}</p>                              
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Modele</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Modele }}</p>         
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Categorie</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Categorie }}</p>                                
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Boite de vitesse</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Boite }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Matricule</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Matricule }}</p> 
+                                </div>
+
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Carburant</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Carb }}</p>                                
+                                </div>
+
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Coût Réservoire</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Reservoire }} DT</p>                                
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Places</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.NbPlaces }}</p>                             
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Portes</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.NbPortes }}</p>                               
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Valises</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.NbVal }}</p>                                
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Cautionnement</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Caut }} DT</p>                             
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Prix</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Prix }} DT</p>                                
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Prix HS</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.PrixHS }} DT</p>                                
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Kilométrage Illimité</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.isUnlimitedMileage ? 'oui' : 'non' }}</p>                              
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Assurance Voiture</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.isCarInsurance ? 'oui' : 'non' }}</p>                              
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Assurance Passager</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.isPassengerInsurance ? 'oui' : 'non' }}</p>                              
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Climatisé</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.Clim ? 'oui' : 'non' }}</p>                                
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">TTC</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ vehicule.isVAT ? 'oui' : 'non' }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                             <div class="row gx-3 mb-3">
+                                <h2 class="small mb-1" for="inputFirstName">Description</h2>
+                                <p class=" mb-1" for="inputFirstName">{{ vehicule.Description }}</p>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <h2 class="small mb-1" for="inputFirstName">Description Detaillé</h2>
+                                <p class=" mb-1" for="inputFirstName">{{ vehicule.DescriptionDet }}</p>                              
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">Park</h2>
+                                    <p class=" mb-1" for="inputFirstName"><a href ="{{ path('park_show',{'id' : vehicule.Park.id}) }}" >{{ vehicule.Park.Nom }}</a></p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">Historique Reservations</h2>
+
+                                    <table id="datatablesSimple">
+                                        <thead>
+                                            <tr>
+                                                <th width="40%">
+                                                    Numéro
+                                                </th>
+                                                <th width="30%">
+                                                    Date Depart
+                                                </th>
+                                                <th width="30%">
+                                                    Date Retour
+                                                </th>
+                                                <th width="30%">
+                                                    Montant
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% set sum = 0 %}
+                                            {% for  location in  vehicule.locations %}
+                                                {% set sum = sum + location.Montant %}
+                                                <tr>
+                                                    <td width="40%">
+                                                        <a href="{{ path('location_show',{'id' : location.id}) }}">{{  location.Num }}</a>
+                                                    </td>
+                                                    <td width="30%">
+                                                        {{  location.Date_Loc }}
+                                                    </td>
+                                                    <td width="30%">
+                                                        {{  location.Date_Retour }}
+                                                    </td>
+                                                    <td width="30%">
+                                                        {{  location.Montant }} DT
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="17">
+                                                        aucune entrée
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <h2 class="small mb-1" for="inputFirstName"><b>Total : <span style="float:right"> {{ sum }} DT </span></b></h2>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">Historique Dépenses</h2>
+
+                                    <table class="mb-0 table">
+                                        <thead>
+                                            <tr>
+                                                <th width="40%">
+                                                    Designation
+                                                </th>
+                                                <th width="30%">
+                                                    Date
+                                                </th>
+                                                <th width="30%">
+                                                    Montant
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% set sum = 0 %}
+                                            {% for  depence in  vehicule.depences %}
+                                                {% set sum = sum + depence.Prix %}
+
+                                                <tr>
+                                                    <td width="40%">
+                                                        <a href="{{ path('depence_show',{'id' : depence.id}) }}">{{  depence.Designation }}</a>
+                                                    </td>
+                                                    <td width="30%">
+                                                        {{  depence.Date_F }}
+                                                    </td>
+                                                    <td width="30%">
+                                                        {{  depence.Prix }} DT
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="17">
+                                                        aucune entrée
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <h2 class="small mb-1" for="inputFirstName"><b>Total : <span style="float:right"> {{ sum }} DT </span></b></h2>
+                                </div>
+                            </div>
+                            <!-- Form Group (email address)-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,172 @@
+<div class="row">
+    <div class="col-xl-4">
+        {{ form_start(form) }}
+        <div class="card mb-4">
+            <div class="card-header">
+                Carte Grise          
+            </div>
+            <div class="card-body text-center">
+                <div class="small font-italic text-muted mb-4">
+                    PDF no larger than 5 MB </br>                        
+                    {% if auto is defined %}
+                        <img src="{{ vich_uploader_asset(auto, 'Grise') }}" alt="Carte Grise" class="img-thumbnail" width="200px" height="50%" />
+                    {% else %}
+                        <img class="img-account-profile mb-2" src="{{asset('back-office/assets/img/demo/user-placeholder.svg') }}" alt="" width="50%" />
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-body text-center">
+                {{ form_widget(form.Grise, {'attr':{'title':'' }}) }}
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                Image          
+            </div>
+            <div class="card-body text-center">
+                <div class="small font-italic text-muted mb-4">
+                    No larger than 5 MB </br>                        
+                    {% if auto is defined %}
+                        <img src="{{ vich_uploader_asset(auto.picture, 'imageFile') }}" alt="Image" class="img-thumbnail" width="600px" height="50%" id="image"/>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-body text-center">
+                {{ form_widget(form.image, {'attr':{'title':'', 'width':'10' }}) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                Fiche Véhicule                                            
+            </div>
+            <div class="card-body">
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-6">
+                        {{ form_label(form.Marque, 'Marque', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.Marque, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.Modele, 'Modele', {'label_attr':{'class':'small mb-1' }}) }}                                    
+                        {{ form_widget(form.Modele, {'attr':{'class':'form-control' }}) }}       
+                    </div>
+                    <label>
+                        {{ form_errors(form.Modele) }}
+                    </label>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-4">
+                        {{ form_label(form.Categorie, 'Categorie', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.Categorie, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Categorie) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_label(form.Boite, 'Boite de vitesse', {'label_attr':{'class':'small mb-1' }}) }}                                  
+                        {{ form_widget(form.Boite, {'attr':{'class':'form-control' }}) }}                              
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Boite) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_label(form.Carb, 'Carburant', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.Carb, {'attr':{'class':'form-control' }}) }}                                
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Carb) }}
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    
+                    <div class="col-md-6">
+                        {{ form_label(form.Prix, 'Prix', {'label_attr':{'class':'small mb-1' }}) }}                                 
+                        {{ form_widget(form.Prix, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Prix) }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form_label(form.Kilos, 'Kilométrage', {'label_attr':{'class':'small mb-1' }}) }}                                 
+                        {{ form_widget(form.Kilos, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Kilos) }}
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-12">
+                        {{ form_label(form.Matricule, 'Matricule', {'label_attr':{'class':'small mb-1' }}) }}                             
+                        {{ form_widget(form.Matricule, {'attr':{'class':'form-control' }}) }}                              
+                        <div class="invalid-feedback">
+                            {{ form_errors(form.Matricule) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-4">
+                        {{ form_label(form.Nb_Places, 'Nb Places', {'label_attr':{'class':'small mb-1' }}) }}                                  
+                        {{ form_widget(form.Nb_Places, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Nb_Places) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_label(form.Nb_Portes, 'Nb Portes', {'label_attr':{'class':'small mb-1' }}) }}                                  
+                        {{ form_widget(form.Nb_Portes, {'attr':{'class':'form-control' }}) }}                                
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Nb_Portes) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_label(form.Nb_Val, 'Nb Valises', {'label_attr':{'class':'small mb-1' }}) }}                                  
+                        {{ form_widget(form.Nb_Val, {'attr':{'class':'form-control' }}) }}                                
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Nb_Val) }}
+                    </div>
+                </div>
+                
+                <div class="row gx-3 mb-3">
+                    {{ form_label(form.Description, 'Description', {'label_attr':{'class':'small mb-1' }}) }}                             
+                    {{ form_widget(form.Description, {'attr':{'class':'form-control' }}) }}                              
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Description) }}
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    {{ form_label(form.Description_Det, 'Description_Det', {'label_attr':{'class':'small mb-1' }}) }}                              
+                    {{ form_widget(form.Description_Det, {'attr':{'class':'form-control' }}) }}                              
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Description_Det) }}
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-4">
+                        {{ form_label(form.Clim, 'Climatisation', {'label_attr':{'class':'small mb-1' }}) }}
+                        {{ form_widget(form.Clim, {'attr':{'class':'form-check-input' }}) }}                              
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Clim) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.isVAT, 'TTC', {'label_attr':{'class':'small mb-1' }}) }}       
+                        {{ form_widget(form.isVAT, {'attr':{'class':'form-check-input' }}) }}                              
+                        <div class="invalid-feedback">
+                            {{ form_errors(form.isVAT) }}
+                        </div>
+                    </div>
+                </div>
+                <button class="fw-500 btn btn-primary">
+                        {{ button_label|default('Sauvegarder') }}
+                </button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

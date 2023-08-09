@@ -1,0 +1,57 @@
+<div class="row gx-4">
+    <div class="col-lg-8">
+    {{ form_start(form) }}
+        <div class="card mb-4">
+            <div class="card-header">
+                Fiche Agence                                                            
+            </div>
+            <div class="card-body">
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-4">
+                        {{ form_label(form.Nom, ' Nom', {'label_attr':{'class':'small mb-1' }}) }}                                                          
+                        {{ form_widget(form.Nom, {'attr':{'class':'form-control' }}) }}                                                 
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Nom) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_label(form.Addresse, ' Addresse', {'label_attr':{'class':'small mb-1' }}) }}                                                          
+                        {{ form_widget(form.Addresse, {'attr':{'class':'form-control' }}) }}                                                 
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Addresse) }}
+                    </div>
+
+                    <div class="col-md-4">
+                        {{ form_label(form.Frais, ' Frais de Livraison', {'label_attr':{'class':'small mb-1' }}) }}                                                          
+                        {{ form_widget(form.Frais, {'attr':{'class':'form-control' }}) }}                                                 
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Frais) }}
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-6">
+                        {{ form_label(form.Maps, ' Lien Maps', {'label_attr':{'class':'small mb-1' }}) }}                                                          
+                        {{ form_widget(form.Maps, {'attr':{'class':'form-control' }}) }}                                                 
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Maps) }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form_label(form.Maps_Frame, ' Frame Maps', {'label_attr':{'class':'small mb-1' }}) }}                                                          
+                        {{ form_widget(form.Maps_Frame, {'attr':{'class':'form-control' }}) }}                                                 
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Maps_Frame) }}
+                    </div>
+                </div>
+                <button class="fw-500 btn btn-primary">
+                        {{ button_label|default('Sauvegarder') }}
+                </button>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

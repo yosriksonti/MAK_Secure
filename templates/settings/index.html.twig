@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<title>Settings index</title>
+
+{% block body %}
+    <h1>Settings index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Photo_Couverture</th>
+                <th>Propos</th>
+                <th>Tel</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for setting in settings %}
+            <tr>
+                <td>{{ setting.id }}</td>
+                <td>{{ setting.PhotoCouverture }}</td>
+                <td>{{ setting.Propos }}</td>
+                <td>{{ setting.Tel }}</td>
+                <td>{{ setting.Address }}</td>
+                <td>{{ setting.Email }}</td>
+                <td>
+                    <a href="{{ path('app_settings_show', {'id': setting.id}) }}">show</a>
+                    <a href="{{ path('app_settings_edit', {'id': setting.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_settings_new') }}">Create new</a>
+{% endblock %}

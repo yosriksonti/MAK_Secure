@@ -1,0 +1,97 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i data-feather="user"></i>
+                                </div>
+                                Liste des Clients                                                                            
+                            </h1>
+                        </div>
+                        <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('client_new') }}">
+                                <i class="me-1" data-feather="user-plus"></i>
+                                Ajouter Client                       
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-fluid px-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <tr>
+                                    <th>
+                                        Email                                   
+                                    </th>
+                                    <th>
+                                        Nom                                   
+                                    </th>
+                                    <th>
+                                        Telephone                                   
+                                    </th>
+                                    <th>
+                                        Permis                                   
+                                    </th>
+                                    <th>
+                                        CIN                                   
+                                    </th>
+                                    <th>
+                                        Actions                                   
+                                    </th>
+                                </tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for client in clients %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar me-2">
+                                                <img class="avatar-img img-fluid" src="{{ asset('back-office/assets/img/illustrations/profiles/profile-2.png') }}" />
+                                            </div>
+                                            {{ client.Email }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {{ client.Name }} {{ client.Lastname }}
+                                    </td>
+                                    <td>
+                                        {{ client.Telephone }}
+                                    </td>
+                                    <td>
+                                        {{ client.Permis }}
+                                    </td>
+                                    <td>
+                                        {{ client.CIN }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('client_show', {'id': client.id}) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('client_edit', {'id': client.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                            {{ include('client/_delete_form.html.twig') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

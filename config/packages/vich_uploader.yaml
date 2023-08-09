@@ -1,0 +1,32 @@
+vich_uploader:
+    db_driver: orm
+
+    metadata:
+        type: annotation
+
+    mappings:
+        Vehicule_image:
+            uri_prefix: /images/vehicules
+            upload_destination: '%kernel.project_dir%/public/images/vehicules'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            inject_on_load: false
+            delete_on_update: false
+            delete_on_remove: true
+        Auto_image:
+            uri_prefix: /images/vehicules
+            upload_destination: '%kernel.project_dir%/public/images/vehicules'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            inject_on_load: false
+            delete_on_update: false
+            delete_on_remove: true
+        
+        Settings_image:
+            uri_prefix: /images/settings
+            upload_destination: '%kernel.project_dir%/public/images/settings'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            inject_on_load: false
+            delete_on_update: false
+            delete_on_remove: true

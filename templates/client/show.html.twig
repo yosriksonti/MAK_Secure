@@ -1,0 +1,198 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-xl px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon"><i data-feather="user-plus"></i></div>
+                                Fiche Client
+                            </h1>
+                        </div>
+                       <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('client_index') }}">
+                                <i class="me-1" data-feather="arrow-left"></i>
+                                Liste des Clients                           
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container-xl px-4 mt-4">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card mb-4">
+                        <div class="card-header">Fiche Client</div>
+                        <div class="card-body">
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-2">
+                                    <h2 class="small mb-1" for="inputFirstName">Nom</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Lastname }}</p>                              
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Prenom</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Name }}</p>         
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Date de naissance</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Date_Naissance }}</p>         
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Addresse 1</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Add1 }}</p>                                
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Addresse 2</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Add2 }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Permis</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Permis }}</p>                               
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Date Livraison</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Date_Permis }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">CIN/Passport</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.CIN }}</p>                               
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Date Livraison</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Date_CIN }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Pays</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Pays }}</p>                             
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Telephone</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ client.Telephone }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">Historique Reservations</h2>
+                                    <table id="datatablesSimple">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">
+                                                    Num
+                                                </th>
+                                                <th width="15%">
+                                                    Date Reservation
+                                                </th>
+                                                <th width="15%">
+                                                    Date Location
+                                                </th>
+                                                <th width="15%">
+                                                    Date Retour
+                                                </th>
+                                                <th width="20%">
+                                                    Vehicule
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for  location in  client.Locations %}
+                                                <tr>
+                                                    <td width="10%">
+                                                        <a href="{{ path('location_show', {'id' : location.id}) }}">{{  location.Num }}</a>
+                                                    </td>
+                                                    <td width="15%">
+                                                        {{  location.Date_Res }}
+                                                    </td>
+                                                    <td width="15%">
+                                                        {{  location.Date_Loc }}
+                                                    </td>
+                                                    <td width="15%">
+                                                        {{  location.Date_Retour }}
+                                                    </td>
+                                                    <td width="20%">
+                                                        <a href="{{ path('vehicule_show', {'id' : location.Vehicule.id}) }}">{{ location.Vehicule.Modele }} : {{ location.Vehicule.Matricule }}</a>
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="17">
+                                                        aucune entrée
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">Historique Paiements</h2>
+
+                                    <table class="mb-0 table">
+                                        <thead>
+                                            <tr>
+                                                <th width="30%">
+                                                    Session
+                                                </th>
+                                                <th width="30%">
+                                                    Reservation
+                                                </th>
+                                                <th width="20%">
+                                                    Montant
+                                                </th>
+                                                <th width="20%">
+                                                    Status
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for  payment in  client.payments %}
+                                                <tr>
+                                                    <td width="30%">
+                                                        <a href="{{ path('payment_show',{'id' : payment.id}) }}">{{  payment.sessionId }}</a>
+                                                    </td>
+                                                    <td width="30%">
+                                                        <a href="{{ path('location_show', {'id' : payment.Location.id}) }}">{{  payment.Location.Num }}</a>
+                                                    </td>
+                                                    <td width="20%">
+                                                        {{  payment.Total }} DT
+                                                    </td>
+                                                    <td width="20%">
+                                                        {{  payment.Status }}
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="17">
+                                                        aucune entrée
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,179 @@
+{% extends 'frontoffice/index.html.twig' %}
+{% block content %}
+      <!-- End Subheader --><!-- Start Blog -->
+      <div class="subheader normal-bg section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <h1 class="text-custom-white">Profile</h1>
+                  <ul class="custom-flex justify-content-center">
+                     <li class="fw-500"><a href="/" class="text-custom-white">Acceuil</a></li>
+                     <li class="active fw-500">Profile</li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Subheader --><!-- Start Listing detail -->
+      <section class="section-padding bg-light-white listing-details">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="listing-details-inner  bg-custom-white padding-20">
+                     <div class="row">
+                        <div class="col-lg-8">
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="blog-details bg-custom-white">
+                                    <hr>
+                                    <!-- tags & social -->
+                                    
+                                    <!-- tags & social --><!-- post author -->
+                                    <div class="bg-light-white padding-15 mb-xl-20">
+                                       <div class="author-caption">
+                                       {{ form_start(form) }}
+                                          <div class="row">
+                                             <div class="col-12">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">E-mail</label>
+                                                   {{ form_widget(form.email, {'attr':{'class':'form-control form-control-custom',}}) }}                                                 
+                                                </div>
+                                             </div>
+                                          </div>
+                                                
+                                          <div class="row">
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Nom</label>
+                                                   {{ form_widget(form.name, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Prénom</label>
+                                                   {{ form_widget(form.lastname, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="row">
+                                             <div class="col-12">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Naissance</label>
+                                                   {{ form_widget(form.Date_Naissance, {'attr':{'class':'form-control form-control-custom'}}) }} 
+                                                </div>
+                                             </div>
+                                             </div>
+                                          <div class="row">
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Pays</label>
+                                                   {{ form_widget(form.Pays, {'attr':{'class':'form-control form-control-custom','require' : "true"}}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Telephone</label>
+                                                   {{ form_widget(form.Telephone, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                          </div>
+                                          
+                                          
+                                          <div class="row">
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Addresse 1</label>
+                                                   {{ form_widget(form.Add1, {'attr':{'class':'form-control form-control-custom',  'require' : "true"}}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-6">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Addresse 2</label>
+                                                   {{ form_widget(form.Add2, {'attr':{'class':'form-control form-control-custom'  }}) }} 
+                                                </div>
+                                             </div>
+                                          </div>
+                                          
+                                          <div class="row">
+                                             <div class="col-8">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Permis</label>
+                                                   {{ form_widget(form.Permis, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-4">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Date Livraison</label>
+                                                   {{ form_widget(form.Date_Permis, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                          </div>
+
+                                          <div class="row">
+                                             <div class="col-8">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">CIN</label>
+                                                   {{ form_widget(form.CIN, {'attr':{'class':'form-control form-control-custom', }}) }}                                                 
+                                                </div>
+                                             </div>
+                                             <div class="col-4">
+                                                <div class="form-group">
+                                                   <label class="text-custom-black fw-500 fs-14">Date Livraison</label>
+                                                   {{ form_widget(form.Date_CIN, {'attr':{'class':'form-control form-control-custom'}}) }}                                                 
+                                                </div>
+                                             </div>
+                                          </div>
+                                          
+                                          
+                                          {{ form_rest(form) }}
+                                          </br>
+                                          <div class="row">
+                                             <button type="submit" class="btn-first btn-submit full-width btn-height">Modifier</button>
+                                          </div>
+                                       {{ form_end(form) }}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="quick-quote bx-wrapper padding-20 mb-xl-30">
+                                    <h5 class="text-custom-black">Reservations</h5>
+                                    {% for reservation in app.user.locations %}
+                                          <hr>
+                                          <p class="fw-600"><a href="{{path('front_office_reservation',{'Num' : reservation.Num}) }}" class="text-custom-black"><b>{{ reservation.Vehicule.Marque }} : {{ reservation.Vehicule.Modele }}</b> du {{reservation.Date_Loc }} jusqu'à {{reservation.Date_Retour }}<a></p>
+                                    {% endfor %}
+                                    
+                                 </div>
+                                 <div class="quick-quote bx-wrapper padding-20 mb-xl-30">
+                                    <h5 class="text-custom-black">Paiements</h5>
+                                    {% for payment in app.user.payments %}
+                                          <hr>
+                                          <p class="fw-600"><a href="{{path('front_office_reservation',{'Num' : payment.location.Num}) }}" class="text-custom-black"><b>{{ payment.location.Vehicule.Marque }} : {{ payment.location.Vehicule.Modele }}</b> du {{payment.location.Date_Loc }} jusqu'à {{payment.location.Date_Retour }}<a></p>
+                                          <p class="fw-600"><a href="#" class="text-custom-black"><b>ID</b> : {{ payment.sessionId }}</a></p>
+                                          <p class="fw-600"><a href="#" class="text-custom-black"><b>Montant</b> : {{ payment.total }} DT </a><small style="float : right">{{ payment.created_On }}</br>{{ payment.status }}</small></p>
+                                    {% endfor %}
+                                    
+                                 </div>
+                                 <div class="need-help bx-wrapper padding-20">
+                                    <h5 class="text-custom-black">Besoin d'aide ?</h5>
+                                    <p class="text-light-dark">Nous serions plus qu'heureux de vous aider. Notre équipe de conseillers est à votre service 24h/24 et 7j/7 pour vous aider.</p>
+                                    <ul class="custom">
+                                       <li class="text-custom-blue fs-18"> <i class="fas fa-phone-alt"></i> <a href="#" class="text-light-dark">(+216) {{ setting.Tel }}</a> </li>
+                                       <li class="text-custom-blue fs-18"> <i class="fas fa-envelope"></i> <a href="#" class="text-light-dark fs-14">{{ setting.Email }}</a> </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Listing detail -->
+      {% endblock %}

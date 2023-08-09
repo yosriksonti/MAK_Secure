@@ -1,0 +1,76 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-xl px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon"><i data-feather="user-plus"></i></div>
+                                Fiche Paramétres
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-xl px-4 mt-4">
+            <div class="row">
+                <div class="col-xl-4">
+                    <!-- Profile picture card-->
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Photo Couverture</div>
+                        <div class="card-body text-center">
+                            <!-- Profile picture image-->
+                            <img class="img-account-profile  mb-2" src="{{ vich_uploader_asset(setting, 'Couverture') }}" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Fiche Paramétres</div>
+                        <div class="card-body">
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">A Propos</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ setting.Propos|raw }}</p>                              
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Num Telephone</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ setting.Tel }}</p>                                
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">Addresse</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ setting.Address }}</p>                                
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="small mb-1" for="inputFirstName">E-mail</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ setting.Email }}</p>                               
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">Annonce ({{ setting.Banner ? 'Visible' : 'Invisible' }})</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ setting.Ad|raw }}</p>                              
+                                </div>
+                            </div>
+                            <hr>
+                            <a href= "{{ path('app_settings_edit', {'id': setting.id}) }}" class="fw-500 btn btn-warning">
+                                {{ button_label|default('Modifier') }}
+                            </a>
+                            <!-- Form Group (email address)-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i data-feather="user"></i>
+                                </div>
+                                Liste des Administrateurs                        
+                            </h1>
+                        </div>
+                        <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('admin_new') }}">
+                                <i class="me-1" data-feather="user-plus"></i>
+                                Ajouter Administrateur                                                                                    
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-fluid px-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <tr>
+                                    <th>
+                                        Email                                   
+                                    </th>
+                                    <th>
+                                        Nom
+                                    </th>
+                                    <th>
+                                        Prenom
+                                    </th>
+                                    <th>
+                                        Role                                   
+                                    </th>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <th>
+                                        actions                                   
+                                    </th>
+                                    {% endif %}
+                                </tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar me-2">
+                                                <img class="avatar-img img-fluid" src="{{ asset('back-office/assets/img/illustrations/profiles/profile-2.png') }}" />
+                                            </div>
+                                            {{ user.Email }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {{ user.Name }}
+                                    </td>
+                                    <td>
+                                        {{ user.Lastname }}
+                                    </td>
+                                    <td>
+                                        {% for role in user.roles %}
+                                            {# if role mod style #}
+                                            {% if role == "ROLE_ADMIN" %}
+                                                <span class="badge bg-red-soft text-red">Administrateur</span>
+                                            {% elseif role == 'ROLE_MODERATOR' %}
+                                                <span class="badge bg-purple-soft text-purple">Moderator</span>
+                                            {% elseif role == 'ROLE_DEVELOPER' %}
+                                                <span class="badge bg-blue-soft text-blue">Developer</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <td>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('admin_edit', {'id': user.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                            {{ include('user/_delete_form.html.twig') }}
+                                        </a>
+                                    </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

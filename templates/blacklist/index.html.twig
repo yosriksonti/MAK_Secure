@@ -1,0 +1,86 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                 Liste des Blacklists                                                                                                                 
+                            </h1>
+                        </div>
+                        <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('blacklist_new') }}">
+                                <i class="me-1" data-feather="user-plus"></i>
+                                Ajouter Blacklist                            
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-fluid px-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th width="15%">
+                                    ID
+                                </th>
+                                <th width="30%">
+                                    CIN
+                                </th>
+                                <th width="45%">
+                                    Permis
+                                </th>
+                                <th width="10%">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for  blacklist in  blacklists %}
+                                <tr>
+                                    <td width="15%">
+                                        {{  blacklist.id }}
+                                    </td>
+                                    <td width="30%">
+                                        {{  blacklist.CIN }}
+                                    </td>
+                                    <td width="45%">
+                                        {{  blacklist.Permis }}
+                                    </td>
+
+                                    
+                                    <td width="10%">
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('blacklist_show', {'id':  blacklist.id}) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('blacklist_edit', {'id':  blacklist.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                            {{ include('blacklist/_delete_form.html.twig') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="17">
+                                        aucune entrée
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

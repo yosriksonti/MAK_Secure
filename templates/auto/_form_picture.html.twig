@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-xl-4">
+        {{ form_start(form) }}
+        <div class="card mb-4">
+            <div class="card-header">
+                Image          
+            </div>
+            <div class="card-body text-center">
+                <div class="small font-italic text-muted mb-4">
+                    No larger than 5 MB </br>                        
+                    {% if auto is defined %}
+                        <img src="{{ vich_uploader_asset(auto.picture, 'imageFile') }}" alt="Image" class="img-thumbnail" width="600px" height="50%" id="image"/>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-body text-center">
+                {{ form_widget(form.image, {'attr':{'title':'', 'width':'10' }}) }}
+            </div>
+            <button class="fw-500 btn btn-primary">
+                    {{ button_label|default('Sauvegarder') }}
+            </button>
+        </div>
+    </div>
+    <div hidden>
+        {{ form_end(form) }}
+    </div>
+    
+</div>

@@ -1,0 +1,166 @@
+{% extends "dashboard/index.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-xl px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon"><i data-feather="user-plus"></i></div>
+                                Fiche Parc
+                            </h1>
+                        </div>
+                       <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('park_index') }}">
+                                <i class="me-1" data-feather="arrow-left"></i>
+                                Liste ds Parcs                           
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-xl px-4 mt-4">
+            <div class="row">
+                <div class="col-xl-12">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Fiche Parc</div>
+                        <div class="card-body">
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Nom</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ park.Nom }}</p>
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Debut HS</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ park.Debut_HS }}</p>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Fin HS</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ park.Fin_HS }}</p>
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Debut BS</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ park.Debut_BS }}</p>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Fin BS</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ park.Fin_BS }}</p>
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Prix Siège Bébé</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ park.PrixBabySeat }} DT</p>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Prix Assurance Passager</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ park.PrixSTW }} DT</p>
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Prix Chauffeur Personel</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ park.PrixPersonalDriver }} DT</p>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small mb-1" for="inputFirstName">Prix Deuxiéme Conducteur</h2>
+                                    <p class=" mb-1" for="inputFirstName">{{ park.PrixSecondDriver }} DT</p>
+
+                                </div>
+                            </div>
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-12">
+                                    <h2 class="small mb-1" for="inputFirstName">Vehicules</h2>
+
+                                    <table id="datatablesSimple">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">
+                                                    Matricule
+                                                </th>
+                                                <th width="45%">
+                                                    Marque
+                                                </th>
+                                                <th width="45%">
+                                                    Modele
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for  vehicule in  park.Vehicules %}
+                                                <tr>
+                                                    <td width="45%">
+                                                        <a href="{{ path('vehicule_show',{'id' : vehicule.id}) }}">{{  vehicule.Matricule }}</a>
+                                                    </td>
+                                                    <td width="45%">
+                                                        {{  vehicule.Marque }}
+                                                    </td>
+
+                                                    <td width="45%">
+                                                        {{  vehicule.Modele }}
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="17">
+                                                        aucune entrée
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Form Group (email address)-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            {% for modele,dispo in dispos %}
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="media-body text-right">
+                                <h3>{{ modele }}</h3>
+                                <span>{{ dispo }} Disponible(s)</span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
