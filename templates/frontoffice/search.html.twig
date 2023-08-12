@@ -88,14 +88,6 @@
                                        <p><i class='fa fa-check-square'></i> Kilométrage Illimité</p>
                                        {% endif %}
                                     </div>
-                                    <div class="col-6">
-                                       <label><b>Disponibilité</b></label>
-                                       <select class = "form-control form-control-custom">
-                                       {% for dsp in dispo[vehicule.id] %}
-                                          <option>à partir du {{ dsp.start }} {% if dsp.end %} jusqu'à {{ dsp.end }} {% endif %} </option>
-                                       {% endfor %}
-                                       </select> 
-                                    </div>
                                  </div>
                                  <div class="row">
                                     <div class="col-md-6">
@@ -134,12 +126,6 @@
                                  <p><i class='fa fa-gear'></i> {{ vehicule.Boite }} |<i class='fa fa-snowflake'></i> {{ vehicule.Clim ? 'Oui' : 'Non' }} | <i class='fa fa-user'></i> {{ vehicule.NbPlaces }} | <i class='fa fa-briefcase'></i> {{ vehicule.NbVal }}</p>
                                  <div class="row">
                                     <div class="col-6">
-                                       {% if vehicule.isCarInsurance %}
-                                       <p><i class='fa fa-check-square'></i> Assurance Voiture</p>
-                                       {% endif %}
-                                       {% if vehicule.isPassengerInsurance %}
-                                       <p><i class='fa fa-check-square'></i> Assurance Pasasger</p>
-                                       {% endif %}
                                        {% if vehicule.isUnlimitedMileage %}
                                        <p><i class='fa fa-check-square'></i> Kilométrage Illimité</p>
                                        {% endif %}
@@ -180,12 +166,6 @@
                                  <p><i class='fa fa-gear'></i> {{ vehicule.Boite }} |<i class='fa fa-snowflake'></i> {{ vehicule.Clim ? 'Oui' : 'Non' }} | <i class='fa fa-user'></i> {{ vehicule.NbPlaces }} | <i class='fa fa-briefcase'></i> {{ vehicule.NbVal }}</p>
                                  <div class="row">
                                     <div class="col-6">
-                                       {% if vehicule.isCarInsurance %}
-                                       <p><i class='fa fa-check-square'></i> Assurance Voiture</p>
-                                       {% endif %}
-                                       {% if vehicule.isPassengerInsurance %}
-                                       <p><i class='fa fa-check-square'></i> Assurance Pasasger</p>
-                                       {% endif %}
                                        {% if vehicule.isUnlimitedMileage %}
                                        <p><i class='fa fa-check-square'></i> Kilométrage Illimité</p>
                                        {% endif %}
