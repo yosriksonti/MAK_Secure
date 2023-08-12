@@ -62,7 +62,7 @@
                                              <div class="col-8">
                                                 <div class="form-group">
                                                    <label class="text-custom-black fw-500 fs-14">Permis</label>
-                                                   {{ form_widget(form.Permis, {'attr':{'class':'form-control form-control-custom' }}) }}                                                 
+                                                   {{ form_widget(form.Permis, {'attr':{'class':'form-control form-control-custom','minlength' : "7" }}) }}                                                 
                                                 </div>
                                              </div>
                                              <div class="col-4">
@@ -93,7 +93,7 @@
                                              <div class="col-8">
                                                 <div class="form-group">
                                                    <label class="text-custom-black fw-500 fs-14">CIN</label>
-                                                   {{ form_widget(form.CIN, {'attr':{'class':'form-control form-control-custom' }}) }}                                                 
+                                                   {{ form_widget(form.CIN, {'attr':{'class':'form-control form-control-custom','minlength' : "7" }}) }}                                                 
                                                 </div>
                                              </div>
                                              <div class="col-4">

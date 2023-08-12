@@ -219,27 +219,24 @@
                 </div>
 
                 <div class="row gx-3 mb-3">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         {{ form_label(form.isUnlimitedMileage, 'Mileage Illimité', {'label_attr':{'class':'small mb-1' }}) }}
                         {{ form_widget(form.isUnlimitedMileage, {'attr':{'class':'form-check-input' }}) }}                              
                     </div>
                     <div class="invalid-feedback">
                         {{ form_errors(form.isUnlimitedMileage) }}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         {{ form_label(form.isCarInsurance, 'Assurance Voiture', {'label_attr':{'class':'small mb-1' }}) }}                                 
                         {{ form_widget(form.isCarInsurance, {'attr':{'class':'form-check-input' }}) }}                               
                     </div>
                     <div class="invalid-feedback">
                         {{ form_errors(form.isCarInsurance) }}
                     </div>
-                    <div class="col-md-4">
-                        {{ form_label(form.isPassengerInsurance, 'Assurance Passager', {'label_attr':{'class':'small mb-1' }}) }}
-                        {{ form_widget(form.isPassengerInsurance, {'attr':{'class':'form-check-input' }}) }}                              
-                    </div>
-                    <div class="invalid-feedback">
-                        {{ form_errors(form.isPassengerInsurance) }}
-                    </div>
+                </div>
+
+                <div hidden>
+                {{ form_widget(form.isPassengerInsurance, {'attr':{'class':'hidden-row' , 'checked' : "false" }}) }}
                 </div>
                 <div class="row gx-3 mb-3">
                     <div class="col-md-4">
@@ -261,6 +258,9 @@
                         {{ button_label|default('Sauvegarder') }}
                 </button>
             </div>
+            <script>
+                document.getElementById("vehicule_isPassengerInsurance").checked = false
+            </script>
             {{ form_end(form) }}
         </div>
     </div>

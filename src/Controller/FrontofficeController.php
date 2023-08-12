@@ -946,8 +946,7 @@ class FrontofficeController extends AbstractController
             }
         } else {
             if(!isset($_GET['DP']) || empty($_GET['DP']) || !isset($_GET['DD']) || empty($_GET['DD']) || !isset($_GET['AP']) || empty($_GET['AP']) 
-            || !isset($_GET['AD']) || empty($_GET['AD']) || !isset($_GET['BS']) || !isset($_GET['STW']) 
-            || !isset($_GET['SD']) || !isset($_GET['PD']) ){
+            || !isset($_GET['AD']) || empty($_GET['AD']) || !isset($_GET['BS']) || !isset($_GET['SD']) || !isset($_GET['PD']) ){
                 $this->user = $user;
                 return $this->redirectToRoute('front_office_car', ['id' => $vehicule->getId()], Response::HTTP_SEE_OTHER);
             } else {
@@ -986,9 +985,7 @@ class FrontofficeController extends AbstractController
                 $prix = $prix * ($days);
                 $optionsPrice = $optionsPrice * ($days);
                 $prix = $_GET['RS'] ? $prix+$vehicule->getReservoire() : $prix;
-                $prix = $_GET['STW'] ? $prix+$vehicule->getPark()->getPrixSTW() : $prix ;
                 $prix = $_GET['SD'] ? $prix+$vehicule->getPark()->getPrixSecondDriver() : $prix ;
-                $optionsPrice += $_GET['STW'] ? $vehicule->getPark()->getPrixSTW() : 0 ;
                 $optionsPrice += $_GET['SD'] ? $vehicule->getPark()->getPrixSecondDriver() : 0 ;
                 $optionsPrice += $_GET['RS'] ? $vehicule->getReservoire() : 0 ;
                 $prix += $agence_d->getFrais();

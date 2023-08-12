@@ -42,7 +42,7 @@
                                        {{ form_widget(form.Date_Loc, {'attr':{'class':'hidden-row'}, "value" : DP}) }}
                                        {{ form_widget(form.Date_Retour, {'attr':{'class':'hidden-row'}, "value" : DD}) }}                                                                        
                                        {{ form_widget(form.isBabySeat, {'attr':{'class':'hidden-row'}, "value" : GET['BS']}) }}                                                                        
-                                       {{ form_widget(form.isSTW, {'attr':{'class':'hidden-row'}, "value" : GET['STW']}) }}                                                                        
+                                       {{ form_widget(form.isSTW, {'attr':{'class':'hidden-row'}, "value" : "0"}) }}                                                                        
                                        {{ form_widget(form.isPersonalDriver, {'attr':{'class':'hidden-row'}, "value" : GET['PD']}) }}                                                                        
                                        {{ form_widget(form.isSecondDriver, {'attr':{'class':'hidden-row'}, "value" : GET['SD']}) }}                                                                        
                                        {{ form_widget(form.isReservoire, {'attr':{'class':'hidden-row'}, "value" : GET['RS']}) }}                                                                        
@@ -174,16 +174,6 @@
                                                       <div class="col-md-12">
                                                          <div class="form-group">
                                                             <label class="fs-14 text-custom-black fw-500">Siège Bébé : {{ GET['BS'] ? BS * Days : "Non" }} {{ GET['BS'] ? "DT" : "" }}</label>
-                                                            <div class="group-form">
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                      {% endif %}
-                                                      {% if GET['STW'] %}
-                                                      <div class="col-md-12">
-                                                         <hr>
-                                                         <div class="form-group">
-                                                            <label class="fs-14 text-custom-black fw-500">Assurance Passager : {{ GET['STW'] ? STW : "Non" }} {{ GET['STW'] ? "DT" : "" }}</label>
                                                             <div class="group-form">
                                                             </div>
                                                          </div>

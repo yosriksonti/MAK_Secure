@@ -58,11 +58,11 @@
                                              </div>
                                           </div>
                                        </div>
-                                       {% if reservation.Status == "Non Confirmée"%}
+                                       {% if reservation.Etat == "Non Confirmée"%}
                                         <div class="col-md-12">
                                           <div class="form-group">
                                              <div class="group-form">
-                                             <a href="{{ path('pay_index') }}?Num={{ reservation.Num }}&amount={{ amount }}"><button type="button" class="form-control form-control-custom btn-first btn-submit">Confirmer</button></a>
+                                             <a href="{{ path('pay_index') }}?Num={{ reservation.Num }}&amount={{ amount * 0.2 }}"><button type="button" class="form-control form-control-custom btn-first btn-submit">Confirmer</button></a>
                                              </div>
                                           </div>
                                        </div>
