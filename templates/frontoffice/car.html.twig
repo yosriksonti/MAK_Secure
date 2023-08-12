@@ -173,7 +173,7 @@
                                        <div class="row">
                                           <div class="col-12">
                                              <div class="form-group">
-                                                <label class="fs-14 text-custom-black fw-500">Départ</label>
+                                                <label class="fs-14 text-custom-black fw-500">Agence de départ</label>
                                                 <select class="custom-select form-control form-control-custom" name="AP">
                                                    {% for  agence in  agences %}
                                                 <option value="{{  agence.id }}">{{  agence.Nom }}</option>
@@ -181,13 +181,13 @@
                                                 </select>                                              
                                              </div>
                                              <div class="form-group">
-                                                <label class="fs-14 text-custom-black fw-500">Date Départ</label>
+                                                <label class="fs-14 text-custom-black fw-500">Date de départ</label>
                                                 <div class="input-group group-form">
                                                    <input type="date" name="DP" class="form-control form-control-custom"  value = "{{ GET['DP'] is defined ? GET['DP'] : ""  }}" min="{{today}}">
                                                 </div>
                                              </div>
                                              <div class="form-group">
-                                                <label class="fs-14 text-custom-black fw-500">Retour</label>
+                                                <label class="fs-14 text-custom-black fw-500">Agence de retour</label>
                                                 <select class="custom-select form-control form-control-custom" name="AD">
                                                    {% for  agence in  agences %}
                                                 <option value="{{  agence.id }}">{{  agence.Nom }}</option>
@@ -195,7 +195,7 @@
                                                 </select>                                             
                                              </div>
                                              <div class="form-group">
-                                                <label class="fs-14 text-custom-black fw-500">Date Retour</label>
+                                                <label class="fs-14 text-custom-black fw-500">Date de retour</label>
                                                 <div class="input-group group-form">
                                                    <input type="date" name="DD" class="form-control form-control-custom"  value = "{{ GET['DD'] is defined ? GET['DD'] : ""}}" min="{{next}}" max="{{max}}">
                                                 </div>

@@ -31,7 +31,7 @@
                                                 <div class="row">
                                                    <div class="col-lg-4 col-md-6">
                                                       <div class="form-group">
-                                                         <label class="fs-14 text-custom-white fw-600">Agence de Départ</label>
+                                                         <label class="fs-14 text-custom-white fw-600">Agence de départ</label>
                                                          <select class="custom-select form-control form-control-custom" name="AP">
                                                          {% for  agence in  agences %}
                                                             <option value="{{  agence.id }}">{{  agence.Nom }}</option>
@@ -41,7 +41,7 @@
                                                       <div class="row">
                                                          <div class="col-12">
                                                             <div class="form-group">
-                                                               <label class="fs-14 text-custom-white fw-600">Date de Depart</label>
+                                                               <label class="fs-14 text-custom-white fw-600">Date de départ</label>
                                                                <div class="input-group group-form">
                                                                   <input type="date" name="DP" class="form-control form-control-custom " required min="{{today}}" value="{{today}}">
                                                                </div>
@@ -51,7 +51,7 @@
                                                    </div>
                                                    <div class="col-lg-4 col-md-6">
                                                       <div class="form-group">
-                                                         <label class="fs-14 text-custom-white fw-600">Agence de Retour</label>
+                                                         <label class="fs-14 text-custom-white fw-600">Agence de retour</label>
                                                          <select class="custom-select form-control form-control-custom" name="AD">
                                                             {% for  agence in  agences %}
                                                             <option value="{{  agence.id }}">{{  agence.Nom }}</option>
@@ -61,7 +61,7 @@
                                                       <div class="row">
                                                          <div class="col-12">
                                                             <div class="form-group">
-                                                               <label class="fs-14 text-custom-white fw-600">Date de Retour</label>
+                                                               <label class="fs-14 text-custom-white fw-600">Date de retour</label>
                                                                <div class="input-group group-form">
                                                                   <input type="date" name="DD" class="form-control form-control-custom" required min="{{next}}" value="{{next}}" max="{{max}}">
                                                                </div>
