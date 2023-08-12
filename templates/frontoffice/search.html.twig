@@ -84,9 +84,6 @@
                                  <p><i class='fa fa-gear'></i> {{ vehicule.Boite }} |<i class='fa fa-snowflake'></i> {{ vehicule.Clim ? 'Oui' : 'Non' }} | <i class='fa fa-user'></i> {{ vehicule.NbPlaces }} | <i class='fa fa-briefcase'></i> {{ vehicule.NbVal }}</p>
                                  <div class="row">
                                     <div class="col-6">
-                                       {% if vehicule.isPassengerInsurance %}
-                                       <p><i class='fa fa-check-square'></i> Assurance Pasasger</p>
-                                       {% endif %}
                                        {% if vehicule.isUnlimitedMileage %}
                                        <p><i class='fa fa-check-square'></i> Kilométrage Illimité</p>
                                        {% endif %}
