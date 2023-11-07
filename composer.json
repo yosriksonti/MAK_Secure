@@ -12,7 +12,7 @@
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.13",
-        "friendsofsymfony/ckeditor-bundle": "^2.4",
+        "eckinox/tinymce-bundle": "^0.1.5",
         "infobip/infobip-api-php-client": "^4.0",
         "laminas/laminas-code": "^4.7",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -88,8 +88,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "ckeditor:install": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

@@ -13,6 +13,7 @@ use App\Entity\Disponibility;
 use App\Entity\Payment;
 use App\Entity\Settings;
 use App\Entity\Blacklist;
+use App\Entity\Partner;
 use App\Form\FeedbackType;
 use App\Form\LocationType;
 use App\Form\UserType;
@@ -28,6 +29,7 @@ use App\Repository\SettingsRepository;
 use App\Repository\PaymentRepository;
 use App\Repository\PromoRepository;
 use App\Repository\BlacklistRepository;
+use App\Repository\PartnerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -62,7 +64,7 @@ class FrontofficeController extends AbstractController
     /**
      * @Route("/", name="home_index")
      */
-    public function index(AgenceRepository $agenceRepository, VehiculeRepository $vehiculeRepository, SettingsRepository $settingsRepo): Response
+    public function index(AgenceRepository $agenceRepository, VehiculeRepository $vehiculeRepository, SettingsRepository $settingsRepo, PartnerRepository $partnerRepo): Response
     {
         if($this->getUser() != null) {
             if (isset($this->getUser()->getRoles()['ROLE_MODERATOR']) || isset($this->getUser()->getRoles()['ROLE_ADMIN'])) {
@@ -82,6 +84,7 @@ class FrontofficeController extends AbstractController
         $max = date("Y-m-d",$max);
 
         $vehicules = $vehiculeRepository->findByModele();
+        $partners = $partnerRepo->findAll();
         $setting = $settingsRepo->findFirst();
         usort($vehicules, function($a, $b){
             return count($a->getFeedback()) < count($b->getFeedback());
@@ -93,6 +96,7 @@ class FrontofficeController extends AbstractController
             'next' => $next,
             'max' => $max,
             'setting' => $setting,
+            'partners' => $partners,
         ]);
     }
 

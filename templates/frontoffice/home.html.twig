@@ -130,4 +130,32 @@
             </div>
          </div>
       </section>
+
+      <section class="section-padding car-booking">
+         <div class="container">
+            <div class="section-header text-center">
+               <div class="section-heading">
+                  <h3 class="text-custom-black">Nos <span class="text-custom-blue">Clients</span></h3>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-12">
+                  <div class="car-slider arrow-layout-2 row text-center">
+                  {% for partner in partners %}
+                     <div class="slide-item col-12">
+                        <div class="car-grid">
+                           <div class="car-grid-wrapper car-grid bx-wrapper">
+                              <div class="image-sec animate-img"><a href="#"><img src="{{ vich_uploader_asset(partner, 'Def') }}" class="full-width" alt="img"></a></div>
+                              <div class="car-grid-caption padding-20 bg-custom-white p-relative">
+                                 <h4 class="title fs-16 text-custom-black">{{partner.Nom}}</h4>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  {% endfor %}   
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
       {% endblock %}
