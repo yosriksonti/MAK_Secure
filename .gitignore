@@ -82,6 +82,7 @@
 /src/Controller/LocationController.php
 /src/Controller/NotificationController.php
 /src/Controller/ParkController.php
+/src/Controller/PartnerController.php
 /src/Controller/PaymentController.php
 /src/Controller/PromoController.php
 /src/Controller/ClientController.php
