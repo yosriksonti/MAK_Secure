@@ -21,16 +21,10 @@
         <!-- Main page content-->
         <div class="container-fluid px-4">
             <div class="card">
-                <div class="card-body">
-                    <div id="chart-id-1" datahostname="makrentcar.com" style="aspect-ratio: 2/1" > 
-                        <p style="margin: 0;">
-                            Chart is not loading. It might be blocked by an ad-blocker. 
-                        </p> 
-                    </div>
-                </div>
+                <div id="chart" style="aspect-ratio: 2/1" data-hostname="example.com"  data-types="visitors,pageviews" data-page-views-selector="#pageviews" datavisitors-selector="#visitors" data-pages="/,/contact" data-y-max="60000" data-border-width="1" data-text-color="#ff6600" data-pageviews-color="#ff6600" data-visitors-color="#cc2200" data-area-opacity="10" data-showlogo="true" ></div>
             </div>
         </div>
     </main>
-    <script async data-chart-selectors="#chart-id1" src="{{ asset('js/embed.js') }}" ></script>
+    <script async data-chart-selectors="#chart" src="{{ asset('js/embed.js') }}" ></script>
 
 {% endblock %}
